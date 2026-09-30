@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS Básico</title>
+</head>
+<body>
+
+    <header>
+        <h1>Punto de Venta (POS)</h1>
+        <p>Tienda "Mi Negocio" - Cajero: Juan Pérez</p>
+        <hr>
+    </header>
+
+    <main>
+
+        <!-- Sección de productos -->
+        <section>
+            <h2>Productos disponibles</h2>
+            <table border="1" cellpadding="6" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Coca Cola 600ml</td>
+                        <td>$18.00</td>
+                        <td>25</td>
+                        <td><button>Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Sabritas Original</td>
+                        <td>$15.00</td>
+                        <td>40</td>
+                        <td><button>Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Pan Bimbo Grande</td>
+                        <td>$45.00</td>
+                        <td>10</td>
+                        <td><button>Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>004</td>
+                        <td>Leche Lala 1L</td>
+                        <td>$26.00</td>
+                        <td>18</td>
+                        <td><button>Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>005</td>
+                        <td>Galletas Marías</td>
+                        <td>$22.00</td>
+                        <td>30</td>
+                        <td><button>Agregar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr>
+
+        <!-- Sección de búsqueda / agregar por código -->
+        <section>
+            <h2>Agregar producto por código</h2>
+            <form>
+                <label for="codigo">Código:</label>
+                <input type="text" id="codigo" name="codigo" placeholder="Ej. 001">
+
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" value="1" min="1">
+
+                <button type="submit">Agregar al carrito</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- Sección de carrito / ticket -->
+        <section>
+            <h2>Carrito de compra</h2>
+            <table border="1" cellpadding="6" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio unitario</th>
+                        <th>Subtotal</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Coca Cola 600ml</td>
+                        <td>2</td>
+                        <td>$18.00</td>
+                        <td>$36.00</td>
+                        <td><button>Quitar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Pan Bimbo Grande</td>
+                        <td>1</td>
+                        <td>$45.00</td>
+                        <td>$45.00</td>
+                        <td><button>Quitar</button></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3"><strong>Subtotal</strong></td>
+                        <td colspan="2">$81.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>IVA (16%)</strong></td>
+                        <td colspan="2">$12.96</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>TOTAL</strong></td>
+                        <td colspan="2"><strong>$93.96</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <hr>
+
+        <!-- Sección de pago -->
+        <section>
+            <h2>Pago</h2>
+            <form>
+                <fieldset>
+                    <legend>Método de pago</legend>
+                    <input type="radio" id="efectivo" name="metodo" value="efectivo" checked>
+                    <label for="efectivo">Efectivo</label>
+
+                    <input type="radio" id="tarjeta" name="metodo" value="tarjeta">
+                    <label for="tarjeta">Tarjeta</label>
+
+                    <input type="radio" id="transferencia" name="metodo" value="transferencia">
+                    <label for="transferencia">Transferencia</label>
+                </fieldset>
+
+                <br>
+
+                <label for="recibido">Monto recibido:</label>
+                <input type="number" id="recibido" name="recibido" step="0.01" placeholder="0.00">
+
+                <label for="cambio">Cambio:</label>
+                <input type="text" id="cambio" name="cambio" value="$0.00" readonly>
+
+                <br><br>
+
+                <button type="submit">Cobrar</button>
+                <button type="reset">Cancelar venta</button>
+                <button type="button">Imprimir ticket</button>
+            </form>
+        </section>
+
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>&copy; 2026 Mi Negocio - Sistema POS básico</p>
+    </footer>
+
+</body>
+</html>
