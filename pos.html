@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Punto de venta básico en HTML">
+    <title>Punto de Venta - POS Tec</title>
+</head>
+<body>
+
+    <header>
+        <h1>🛒 POS Tec - Punto de Venta</h1>
+        <nav>
+            <a href="index.html">Inicio</a> |
+            <a href="#catalogo">Catálogo</a> |
+            <a href="#carrito">Carrito</a> |
+            <a href="#pago">Pago</a> |
+            <a href="#reporte">Reporte del día</a>
+        </nav>
+        <table border="1" cellpadding="6" cellspacing="0">
+            <tr>
+                <th>Cajero</th><td>Juan Pérez</td>
+                <th>Caja</th><td>1</td>
+                <th>Fecha</th><td><time datetime="2026-09-29">29/09/2026</time></td>
+                <th>Turno</th><td>Matutino</td>
+                <th>Ticket</th><td>#000125</td>
+            </tr>
+        </table>
+        <hr>
+    </header>
+
+    <main>
+
+        <!-- ============ CATÁLOGO ============ -->
+        <section id="catalogo">
+            <h2>1. Catálogo de productos</h2>
+
+            <form>
+                <label for="buscar">Buscar producto:</label>
+                <input type="search" id="buscar" name="buscar" list="productos" placeholder="Nombre o código">
+                <datalist id="productos">
+                    <option value="001 - Coca Cola 600ml">
+                    <option value="002 - Sabritas Original">
+                    <option value="003 - Pan Bimbo Grande">
+                    <option value="004 - Leche Lala 1L">
+                    <option value="005 - Galletas Marías">
+                    <option value="006 - Agua Ciel 1L">
+                    <option value="007 - Jabón Zote">
+                    <option value="008 - Huevo (docena)">
+                </datalist>
+
+                <label for="categoria">Categoría:</label>
+                <select id="categoria" name="categoria">
+                    <option value="">Todas</option>
+                    <option value="bebidas">Bebidas</option>
+                    <option value="botanas">Botanas</option>
+                    <option value="panaderia">Panadería</option>
+                    <option value="lacteos">Lácteos</option>
+                    <option value="limpieza">Limpieza</option>
+                </select>
+
+                <button type="submit">Buscar</button>
+            </form>
+
+            <br>
+
+            <table border="1" cellpadding="6" cellspacing="0">
+                <caption><strong>Productos disponibles</strong></caption>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Nivel</th>
+                        <th>Cantidad</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Coca Cola 600ml</td>
+                        <td>Bebidas</td>
+                        <td>$18.00</td>
+                        <td>25</td>
+                        <td><meter value="25" min="0" max="50" low="10">25</meter></td>
+                        <td><input type="number" value="1" min="1" max="25" size="3"></td>
+                        <td><button type="button">➕ Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Sabritas Original</td>
+                        <td>Botanas</td>
+                        <td>$15.00</td>
+                        <td>40</td>
+                        <td><meter value="40" min="0" max="50" low="10">40</meter></td>
+                        <td><input type="number" value="1" min="1" max="40" size="3"></td>
+                        <td><button type="button">➕ Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Pan Bimbo Grande</td>
+                        <td>Panadería</td>
+                        <td>$45.00</td>
+                        <td>10</td>
+                        <td><meter value="10" min="0" max="50" low="10">10</meter></td>
+                        <td><input type="number" value="1" min="1" max="10" size="3"></td>
+                        <td><button type="button">➕ Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>004</td>
+                        <td>Leche Lala 1L</td>
+                        <td>Lácteos</td>
+                        <td>$26.00</td>
+                        <td>18</td>
+                        <td><meter value="18" min="0" max="50" low="10">18</meter></td>
+                        <td><input type="number" value="1" min="1" max="18" size="3"></td>
+                        <td><button type="button">➕ Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>005</td>
+                        <td>Galletas Marías</td>
+                        <td>Botanas</td>
+                        <td>$22.00</td>
+                        <td>30</td>
+                        <td><meter value="30" min="0" max="50" low="10">30</meter></td>
+                        <td><input type="number" value="1" min="1" max="30" size="3"></td>
+                        <td><button type="button">➕ Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>006</td>
+                        <td>Agua Ciel 1L</td>
+                        <td>Bebidas</td>
+                        <td>$12.00</td>
+                        <td>4</td>
+                        <td><meter value="4" min="0" max="50" low="10">4</meter></td>
+                        <td><input type="number" value="1" min="1" max="4" size="3"></td>
+                        <td><button type="button">➕ Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>007</td>
+                        <td>Jabón Zote</td>
+                        <td>Limpieza</td>
+                        <td>$20.00</td>
+                        <td>0</td>
+                        <td><meter value="0" min="0" max="50" low="10">0</meter></td>
+                        <td><input type="number" value="0" min="0" max="0" size="3" disabled></td>
+                        <td><button type="button" disabled>Agotado</button></td>
+                    </tr>
+                    <tr>
+                        <td>008</td>
+                        <td>Huevo (docena)</td>
+                        <td>Lácteos</td>
+                        <td>$48.00</td>
+                        <td>12</td>
+                        <td><meter value="12" min="0" max="50" low="10">12</meter></td>
+                        <td><input type="number" value="1" min="1" max="12" size="3"></td>
+                        <td><button type="button">➕ Agregar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><small>La barra de nivel se muestra en rojo cuando el stock es bajo (menos de 10 unidades).</small></p>
+        </section>
+
+        <hr>
+
+        <!-- ============ CARRITO ============ -->
+        <section id="carrito">
+            <h2>2. Carrito de compra</h2>
+
+            <table border="1" cellpadding="6" cellspacing="0">
+                <caption><strong>Ticket #000125</strong></caption>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Código</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio unitario</th>
+                        <th>Subtotal</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>001</td>
+                        <td>Coca Cola 600ml</td>
+                        <td><input type="number" value="2" min="1" size="3"></td>
+                        <td>$18.00</td>
+                        <td>$36.00</td>
+                        <td><button type="button">🗑 Quitar</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>003</td>
+                        <td>Pan Bimbo Grande</td>
+                        <td><input type="number" value="1" min="1" size="3"></td>
+                        <td>$45.00</td>
+                        <td>$45.00</td>
+                        <td><button type="button">🗑 Quitar</button></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>008</td>
+                        <td>Huevo (docena)</td>
+                        <td><input type="number" value="1" min="1" size="3"></td>
+                        <td>$48.00</td>
+                        <td>$48.00</td>
+                        <td><button type="button">🗑 Quitar</button></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" align="right">Artículos</td>
+                        <td colspan="2">4</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" align="right">Subtotal</td>
+                        <td colspan="2">$129.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" align="right">Descuento</td>
+                        <td colspan="2">-$0.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" align="right">IVA (16%)</td>
+                        <td colspan="2">$20.64</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" align="right"><strong>TOTAL A PAGAR</strong></td>
+                        <td colspan="2"><strong><big>$149.64</big></strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <p>
+                <button type="button">🔄 Actualizar totales</button>
+                <button type="button">🧹 Vaciar carrito</button>
+            </p>
+
+            <details>
+                <summary>Aplicar descuento o cupón</summary>
+                <form>
+                    <label for="cupon">Código de cupón:</label>
+                    <input type="text" id="cupon" name="cupon" placeholder="Ej. PROMO10">
+
+                    <label for="descuento">Descuento (%):</label>
+                    <input type="number" id="descuento" name="descuento" min="0" max="100" value="0">
+
+                    <button type="submit">Aplicar</button>
+                </form>
+            </details>
+        </section>
+
+        <hr>
+
+        <!-- ============ CLIENTE Y PAGO ============ -->
+        <section id="pago">
+            <h2>3. Cliente y pago</h2>
+
+            <form>
+                <fieldset>
+                    <legend>Datos del cliente (opcional)</legend>
+
+                    <label for="cliente">Nombre:</label>
+                    <input type="text" id="cliente" name="cliente" placeholder="Público en general">
+
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="10 dígitos">
+
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo" placeholder="cliente@correo.com">
+                    <br><br>
+
+                    <input type="checkbox" id="factura" name="factura">
+                    <label for="factura">Requiere factura</label>
+
+                    <label for="rfc">RFC:</label>
+                    <input type="text" id="rfc" name="rfc" maxlength="13" placeholder="XAXX010101000">
+                </fieldset>
+
+                <br>
+
+                <fieldset>
+                    <legend>Método de pago</legend>
+
+                    <input type="radio" id="efectivo" name="metodo" value="efectivo" checked>
+                    <label for="efectivo">💵 Efectivo</label>
+
+                    <input type="radio" id="tarjeta" name="metodo" value="tarjeta">
+                    <label for="tarjeta">💳 Tarjeta</label>
+
+                    <input type="radio" id="transferencia" name="metodo" value="transferencia">
+                    <label for="transferencia">🏦 Transferencia</label>
+
+                    <input type="radio" id="mixto" name="metodo" value="mixto">
+                    <label for="mixto">Mixto</label>
+
+                    <br><br>
+
+                    <table border="0" cellpadding="4">
+                        <tr>
+                            <td><label for="total">Total a pagar:</label></td>
+                            <td><input type="text" id="total" name="total" value="$149.64" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><label for="recibido">Monto recibido:</label></td>
+                            <td><input type="number" id="recibido" name="recibido" step="0.01" min="0" placeholder="0.00"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="cambio">Cambio:</label></td>
+                            <td><input type="text" id="cambio" name="cambio" value="$0.00" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><label for="referencia">Referencia / autorización:</label></td>
+                            <td><input type="text" id="referencia" name="referencia" placeholder="Solo tarjeta o transferencia"></td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <br>
+
+                <fieldset>
+                    <legend>Comprobante</legend>
+                    <input type="radio" id="imprimir" name="comprobante" value="imprimir" checked>
+                    <label for="imprimir">🖨 Imprimir ticket</label>
+
+                    <input type="radio" id="enviar" name="comprobante" value="correo">
+                    <label for="enviar">📧 Enviar por correo</label>
+
+                    <input type="radio" id="sin" name="comprobante" value="ninguno">
+                    <label for="sin">Sin comprobante</label>
+                </fieldset>
+
+                <br>
+
+                <label for="notas">Notas de la venta:</label><br>
+                <textarea id="notas" name="notas" rows="3" cols="50" placeholder="Observaciones..."></textarea>
+
+                <br><br>
+
+                <button type="submit"><strong>✅ COBRAR $149.64</strong></button>
+                <button type="button">⏸ Poner en espera</button>
+                <button type="reset">❌ Cancelar venta</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- ============ REPORTE ============ -->
+        <section id="reporte">
+            <h2>4. Reporte del día</h2>
+
+            <table border="1" cellpadding="6" cellspacing="0">
+                <caption><strong>Resumen de ventas - 29/09/2026</strong></caption>
+                <thead>
+                    <tr>
+                        <th>Concepto</th>
+                        <th>Cantidad</th>
+                        <th>Importe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Ventas en efectivo</td><td>18</td><td>$2,340.00</td></tr>
+                    <tr><td>Ventas con tarjeta</td><td>9</td><td>$1,875.50</td></tr>
+                    <tr><td>Ventas por transferencia</td><td>3</td><td>$640.00</td></tr>
+                    <tr><td>Ventas canceladas</td><td>1</td><td>$85.00</td></tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total del día</th>
+                        <th>30</th>
+                        <th>$4,855.50</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <br>
+
+            <details>
+                <summary>Últimos tickets</summary>
+                <table border="1" cellpadding="6" cellspacing="0">
+                    <thead>
+                        <tr><th>Ticket</th><th>Hora</th><th>Método</th><th>Total</th><th>Estado</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>#000124</td><td>12:45</td><td>Efectivo</td><td>$96.00</td><td>Pagado</td></tr>
+                        <tr><td>#000123</td><td>12:30</td><td>Tarjeta</td><td>$310.00</td><td>Pagado</td></tr>
+                        <tr><td>#000122</td><td>12:10</td><td>Efectivo</td><td>$85.00</td><td><del>Cancelado</del></td></tr>
+                        <tr><td>#000121</td><td>11:52</td><td>Transferencia</td><td>$220.00</td><td>Pagado</td></tr>
+                    </tbody>
+                </table>
+            </details>
+
+            <p>
+                <button type="button">📊 Corte de caja</button>
+                <button type="button">📤 Exportar reporte</button>
+            </p>
+        </section>
+
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>
+            &copy; 2026 POS Tec &middot; Proyecto escolar &middot;
+            <a href="index.html">Volver al inicio</a> &middot;
+            <a href="#catalogo">Subir</a>
+        </p>
+    </footer>
+
+</body>
+</html>
