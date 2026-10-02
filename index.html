@@ -10,7 +10,7 @@
 
     <header id="inicio">
         <h1>🛒 POS Tec</h1>
-        <p><em>Sistema de Punto de Venta para pequeños negocios</em></p>
+        <p><em>Sistema de <abbr title="Point of Sale">POS</abbr> (Punto de Venta) para pequeños negocios</em></p>
         <nav>
             <a href="#inicio">Inicio</a> |
             <a href="#catalogo">Catálogo</a> |
@@ -39,8 +39,41 @@
                 <li><strong>Imprimir tickets:</strong> genera el comprobante de cada venta.</li>
                 <li><strong>Ver reportes:</strong> resumen de ventas del día.</li>
             </ul>
+            <blockquote>
+                "Desde que usamos POS Tec cerramos la caja en cinco minutos."
+                <br><cite>— Doña Lupita, Abarrotes La Esquina</cite>
+            </blockquote>
             <p><a href="#catalogo"><button type="button">Comenzar a vender ➜</button></a></p>
         </section>
+
+        <hr>
+
+        <!-- ============ ASIDE: AVISOS Y AYUDA ============ -->
+        <aside id="avisos">
+            <h2>Avisos y ayuda rápida</h2>
+
+            <article>
+                <h3>📢 Promoción de la semana</h3>
+                <p><time datetime="2026-10-01">1 de octubre</time> al <time datetime="2026-10-07">7 de octubre</time>:
+                   2x1 en Galletas Marías usando el cupón <mark>PROMO10</mark>.</p>
+            </article>
+
+            <article>
+                <h3>⚠️ Inventario</h3>
+                <p>Productos con stock bajo: <mark>Agua Ciel 1L</mark>. Producto agotado: <mark>Jabón Zote</mark>.
+                   Avisar al encargado para resurtir.</p>
+            </article>
+
+            <article>
+                <h3>⌨️ Atajos de teclado</h3>
+                <dl>
+                    <dt><kbd>F2</kbd></dt><dd>Buscar producto</dd>
+                    <dt><kbd>F4</kbd></dt><dd>Ir al carrito</dd>
+                    <dt><kbd>F8</kbd></dt><dd>Cobrar venta</dd>
+                    <dt><kbd>Esc</kbd></dt><dd>Cancelar venta</dd>
+                </dl>
+            </article>
+        </aside>
 
         <hr>
 
@@ -161,7 +194,7 @@
                     </tr>
                     <tr>
                         <td>006</td>
-                        <td>Agua Ciel 1L</td>
+                        <td><mark>Agua Ciel 1L</mark></td>
                         <td>Bebidas</td>
                         <td>$12.00</td>
                         <td>4</td>
@@ -171,7 +204,7 @@
                     </tr>
                     <tr>
                         <td>007</td>
-                        <td>Jabón Zote</td>
+                        <td><mark>Jabón Zote</mark></td>
                         <td>Limpieza</td>
                         <td>$20.00</td>
                         <td>0</td>
@@ -256,7 +289,7 @@
                         <td colspan="2">-$0.00</td>
                     </tr>
                     <tr>
-                        <td colspan="5" align="right">IVA (16%)</td>
+                        <td colspan="5" align="right"><abbr title="Impuesto al Valor Agregado">IVA</abbr> (16%)</td>
                         <td colspan="2">$20.64</td>
                     </tr>
                     <tr>
@@ -270,6 +303,27 @@
                 <button type="button">🔄 Actualizar totales</button>
                 <button type="button">🧹 Vaciar carrito</button>
             </p>
+
+            <figure>
+                <figcaption><strong>Vista previa del ticket</strong></figcaption>
+<pre>
+==============================
+         POS TEC
+   Abarrotes "Mi Negocio"
+   Ticket #000125  Caja 1
+   29/09/2026   Cajero: JP
+==============================
+2  Coca Cola 600ml     $36.00
+1  Pan Bimbo Grande    $45.00
+1  Huevo (docena)      $48.00
+------------------------------
+Subtotal              $129.00
+IVA 16%                $20.64
+TOTAL                 $149.64
+==============================
+   ¡Gracias por su compra!
+</pre>
+            </figure>
 
             <details>
                 <summary>Aplicar descuento o cupón</summary>
@@ -308,7 +362,7 @@
                     <input type="checkbox" id="factura" name="factura">
                     <label for="factura">Requiere factura</label>
 
-                    <label for="rfc">RFC:</label>
+                    <label for="rfc"><abbr title="Registro Federal de Contribuyentes">RFC</abbr>:</label>
                     <input type="text" id="rfc" name="rfc" maxlength="13" placeholder="XAXX010101000">
                 </fieldset>
 
@@ -456,7 +510,19 @@
     <hr>
 
     <footer>
-        <p>&copy; 2026 POS Tec &middot; Proyecto escolar &middot; <a href="#inicio">Subir</a></p>
+        <nav>
+            <a href="#inicio">Inicio</a> |
+            <a href="#catalogo">Catálogo</a> |
+            <a href="#carrito">Carrito</a> |
+            <a href="#pago">Pago</a> |
+            <a href="#reporte">Reporte</a> |
+            <a href="#acerca">Acerca de</a>
+        </nav>
+        <address>
+            Abarrotes "Mi Negocio" &middot; Calle Principal #123, Centro &middot;
+            Tel. <a href="tel:+525512345678">55 1234 5678</a>
+        </address>
+        <p><small>&copy; 2026 POS Tec &middot; Proyecto escolar de la materia Tecnologías &middot; Hecho con HTML5</small></p>
     </footer>
 
 </body>
