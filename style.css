@@ -512,6 +512,260 @@ details table {
     margin-top: 1rem;
 }
 
+/* ---------- 8. CLIENTE Y PAGO ---------- */
+/* Fieldsets elegantes */
+fieldset {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    background: #ffffff;
+    margin: 1rem 0;
+}
+
+legend {
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    padding: 0.2rem 0.6rem;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+/* Formularios e inputs */
+input[type="text"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="email"],
+select,
+textarea {
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-hover);
+    border-radius: var(--radius-sm);
+    background: #ffffff;
+    color: var(--text-main);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="search"] {
+    min-width: 240px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Radio buttons y checkboxes */
+input[type="radio"],
+input[type="checkbox"] {
+    accent-color: var(--primary);
+    cursor: pointer;
+    width: 1.05rem;
+    height: 1.05rem;
+    vertical-align: middle;
+    margin-right: 0.35rem;
+}
+
+fieldset label {
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-right: 1.25rem;
+    vertical-align: middle;
+}
+
+/* Tabla de cálculo de pago */
+#pago table {
+    max-width: 480px;
+    background: transparent;
+    border: none !important;
+    margin: 0.75rem 0;
+}
+
+#pago table td {
+    border: none;
+    padding: 0.4rem 0.5rem;
+}
+
+#pago table td:first-child {
+    font-weight: 500;
+    color: var(--text-muted);
+    width: 180px;
+}
+
+#pago table input[readonly] {
+    background: #f8fafc;
+    font-weight: 700;
+}
+
+#total {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+#cambio {
+    color: var(--success);
+    font-size: 1.1rem;
+}
+
+textarea {
+    width: 100%;
+    max-width: 600px;
+    resize: vertical;
+}
+
+/* ---------- 9. BOTONES DE ACCIÓN ---------- */
+button {
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-hover);
+    background: #ffffff;
+    color: var(--text-main);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+button:hover:not(:disabled) {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+button:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+/* Botón Cobrar principal */
+#pago button[type="submit"] {
+    background: var(--success);
+    color: #ffffff;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.75rem;
+    border: none;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+#pago button[type="submit"]:hover {
+    background: var(--success-hover);
+}
+
+/* Botón cancelar venta */
+#pago button[type="reset"] {
+    color: var(--danger);
+    border-color: #fecaca;
+}
+
+#pago button[type="reset"]:hover {
+    background: var(--danger-light);
+}
+
+/* Estado de tickets en reporte */
+#reporte del {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+/* ---------- 10. PIE DE PÁGINA (FOOTER) ---------- */
+footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 1.25rem 3rem 1.25rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+footer nav {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+footer nav a {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+footer nav a:hover {
+    color: var(--primary);
+}
+
+footer address {
+    font-style: normal;
+    margin-bottom: 0.5rem;
+}
+
+/* ---------- 11. RESPONSIVE / ADAPTABILIDAD ---------- */
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+
+    section, aside#avisos {
+        padding: 1.25rem;
+    }
+
+    header#inicio {
+        padding-top: 1.25rem;
+        border-radius: 0;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    header nav a {
+        text-align: center;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    #sesion table {
+        display: table;
+        white-space: normal;
+    }
+
+    #sesion tr {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #sesion th, #sesion td {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    #catalogo form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #pago button {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+
 
 
 
