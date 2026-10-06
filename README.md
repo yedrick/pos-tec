@@ -24,7 +24,8 @@ https://yedrick.github.io/pos-tec/
 
 ## Tecnología
 
-- HTML5 (sin CSS ni JavaScript por ahora)
+- HTML5
+- CSS3 (estilos modernos, diseño responsivo y tipografía Inter)
 
 ## Autor
 
