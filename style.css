@@ -330,4 +330,112 @@ mark {
     border-right: none;
 }
 
+/* ---------- 6. TABLAS (CATÁLOGO, CARRITO, REPORTES) ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    background: #ffffff;
+}
+
+table[border] {
+    border: 1px solid var(--border) !important;
+}
+
+caption {
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.6rem;
+}
+
+thead th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid var(--border);
+    border-bottom: 2px solid #cbd5e1;
+    text-align: left;
+}
+
+tbody td {
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+tfoot td, tfoot th {
+    padding: 0.75rem 0.85rem;
+    border: 1px solid var(--border);
+    background-color: #f8fafc;
+    font-weight: 600;
+}
+
+/* Fila de Total destacado */
+tfoot tr:last-child td,
+tfoot tr:last-child th {
+    background-color: var(--success-light);
+    color: var(--success-hover);
+    font-size: 1.05rem;
+}
+
+/* Medidores de Stock */
+meter {
+    width: 70px;
+    height: 14px;
+    vertical-align: middle;
+    border-radius: 4px;
+}
+
+/* Barra de búsqueda y filtros del catálogo */
+#catalogo form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+#catalogo form label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Botón agregar producto en catálogo */
+#catalogo td button {
+    background: var(--primary-light);
+    color: var(--primary);
+    border: 1px solid #bfdbfe;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+#catalogo td button:hover:not(:disabled) {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+#catalogo td button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
 
