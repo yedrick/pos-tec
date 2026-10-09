@@ -225,21 +225,33 @@ header p {
 
 header nav {
     background: rgba(255, 255, 255, 0.08);
-    padding: 0.6rem 1rem;
+    padding: 0.35rem 0.5rem;
     border-radius: var(--radius-md);
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    color: #64748b; /* Suavizar las barras separadoras '|' */
+    gap: 0.35rem;
+}
+
+header nav li {
+    margin: 0;
+    padding: 0;
 }
 
 header nav a {
     color: #e2e8f0;
-    padding: 0.35rem 0.85rem;
+    padding: 0.4rem 0.85rem;
     border-radius: var(--radius-sm);
     font-weight: 500;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
     transition: background 0.15s ease, color 0.15s ease;
 }
@@ -767,19 +779,33 @@ footer {
 
 footer nav {
     margin-bottom: 1rem;
+}
+
+footer nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 1rem;
+}
+
+footer nav li {
+    margin: 0;
+    padding: 0;
 }
 
 footer nav a {
     color: var(--text-muted);
     font-weight: 500;
+    text-decoration: none;
+    transition: color 0.15s ease;
 }
 
 footer nav a:hover {
     color: var(--primary);
+    text-decoration: underline;
 }
 
 footer address {
