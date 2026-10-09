@@ -25,7 +25,8 @@ https://yedrick.github.io/pos-tec/
 ## Tecnología
 
 - HTML5
-- CSS3 (estilos modernos, diseño responsivo y tipografía Inter)
+- CSS3 (variables personalizadas, diseño responsivo, tipografía Inter y Modo Oscuro/Claro)
+- JavaScript básico (manipulación de DOM, eventos y persistencia en `localStorage`)
 
 ## Autor
 
