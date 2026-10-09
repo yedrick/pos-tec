@@ -49,6 +49,45 @@
     --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 }
 
+/* Variables para Modo Oscuro */
+body.dark-mode {
+    /* Paleta adaptada */
+    --primary: #3b82f6;
+    --primary-hover: #60a5fa;
+    --primary-light: #1e293b;
+
+    --success: #10b981;
+    --success-hover: #34d399;
+    --success-light: #064e3b;
+
+    --danger: #ef4444;
+    --danger-hover: #f87171;
+    --danger-light: #450a0a;
+
+    --warning: #f59e0b;
+    --warning-light: #451a03;
+
+    /* Fondos y superficies oscuras */
+    --bg-body: #090d16;
+    --bg-card: #131c2e;
+    --bg-muted: #1e293b;
+    --bg-header: #05080f;
+
+    /* Textos claros sobre fondo oscuro */
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-light: #64748b;
+    --text-on-dark: #ffffff;
+
+    /* Bordes y sombras oscuras */
+    --border: #243247;
+    --border-hover: #384b66;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+}
+
 /* Importar fuente Inter */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -70,6 +109,7 @@ body {
     font-family: var(--font-sans);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 /* Contenedor principal */
@@ -128,15 +168,53 @@ header#inicio {
     margin-bottom: 2rem;
     border-radius: 0 0 var(--radius-lg) var(--radius-lg);
     box-shadow: var(--shadow-md);
+    transition: background-color 0.3s ease;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 header h1 {
     color: #ffffff;
     font-size: 2rem;
-    margin-bottom: 0.25rem;
+    margin: 0;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+/* Botón interactivo de Modo Oscuro / Claro */
+.btn-theme {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.5rem 0.9rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: all 0.2s ease;
+}
+
+.btn-theme:hover {
+    background-color: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-theme:active {
+    transform: translateY(0);
 }
 
 header p {
@@ -184,7 +262,7 @@ section, aside#avisos {
 
 /* Sección Bienvenida */
 #bienvenida {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-muted) 100%);
     border-left: 5px solid var(--primary);
 }
 
@@ -194,13 +272,13 @@ section, aside#avisos {
 }
 
 #bienvenida blockquote {
-    background: #f1f5f9;
-    border-left: 4px solid #94a3b8;
+    background: var(--bg-muted);
+    border-left: 4px solid var(--primary);
     margin: 1.25rem 0;
     padding: 1rem 1.25rem;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     font-style: italic;
-    color: #334155;
+    color: var(--text-main);
 }
 
 #bienvenida cite {
@@ -233,7 +311,7 @@ section, aside#avisos {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.25rem;
     padding: 1.5rem;
-    background: #f8fafc;
+    background: var(--bg-muted);
 }
 
 #avisos h2 {
@@ -243,7 +321,7 @@ section, aside#avisos {
 }
 
 #avisos article {
-    background: white;
+    background: var(--bg-card);
     padding: 1.25rem;
     border-radius: var(--radius-sm);
     border: 1px solid var(--border);
@@ -303,11 +381,11 @@ mark {
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     overflow: hidden;
-    background: #fafafa;
+    background: var(--bg-card);
 }
 
 #sesion th {
-    background: #f1f5f9;
+    background: var(--bg-muted);
     color: var(--text-muted);
     font-size: 0.8rem;
     text-transform: uppercase;
@@ -336,7 +414,7 @@ table {
     border-collapse: collapse;
     margin: 1rem 0;
     font-size: 0.95rem;
-    background: #ffffff;
+    background: var(--bg-card);
 }
 
 table[border] {
@@ -352,15 +430,15 @@ caption {
 }
 
 thead th {
-    background-color: #f8fafc;
-    color: #475569;
+    background-color: var(--bg-muted);
+    color: var(--text-muted);
     font-weight: 600;
     font-size: 0.82rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     padding: 0.75rem 0.85rem;
     border: 1px solid var(--border);
-    border-bottom: 2px solid #cbd5e1;
+    border-bottom: 2px solid var(--border-hover);
     text-align: left;
 }
 
@@ -371,13 +449,13 @@ tbody td {
 }
 
 tbody tr:hover {
-    background-color: #f8fafc;
+    background-color: var(--bg-muted);
 }
 
 tfoot td, tfoot th {
     padding: 0.75rem 0.85rem;
     border: 1px solid var(--border);
-    background-color: #f8fafc;
+    background-color: var(--bg-muted);
     font-weight: 600;
 }
 
@@ -465,13 +543,13 @@ figure {
 figure pre {
     display: inline-block;
     text-align: left;
-    background: #fffef7;
-    border: 1px dashed #cbd5e1;
+    background: var(--bg-card);
+    border: 1px dashed var(--border-hover);
     border-radius: var(--radius-sm);
     padding: 1.25rem 1.5rem;
     font-family: var(--font-mono);
     font-size: 0.88rem;
-    color: #334155;
+    color: var(--text-main);
     box-shadow: var(--shadow-sm);
     line-height: 1.4;
 }
@@ -484,7 +562,7 @@ figcaption {
 
 /* Desplegables <details> (cupón de descuento y últimos tickets) */
 details {
-    background: #f8fafc;
+    background: var(--bg-muted);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     padding: 0.75rem 1rem;
@@ -492,7 +570,7 @@ details {
 }
 
 details[open] {
-    background: #ffffff;
+    background: var(--bg-card);
 }
 
 summary {
@@ -518,7 +596,7 @@ fieldset {
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     padding: 1.25rem 1.5rem;
-    background: #ffffff;
+    background: var(--bg-card);
     margin: 1rem 0;
 }
 
@@ -527,7 +605,7 @@ legend {
     color: var(--text-main);
     font-size: 0.95rem;
     padding: 0.2rem 0.6rem;
-    background: #f8fafc;
+    background: var(--bg-muted);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
 }
@@ -545,7 +623,7 @@ textarea {
     padding: 0.5rem 0.75rem;
     border: 1px solid var(--border-hover);
     border-radius: var(--radius-sm);
-    background: #ffffff;
+    background: var(--bg-card);
     color: var(--text-main);
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
