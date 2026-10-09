@@ -10,7 +10,12 @@
 <body>
 
     <header id="inicio">
-        <h1>🛒 POS Tec</h1>
+        <div class="header-top">
+            <h1>🛒 POS Tec</h1>
+            <button id="theme-toggle" class="btn-theme" type="button" aria-label="Cambiar modo de color">
+                <span id="theme-icon">🌙</span> <span id="theme-text">Modo Oscuro</span>
+            </button>
+        </div>
         <p><em>Sistema de <abbr title="Point of Sale">POS</abbr> (Punto de Venta) para pequeños negocios</em></p>
         <nav>
             <a href="#inicio">Inicio</a> |
@@ -526,5 +531,7 @@ TOTAL                 $149.64
         <p><small>&copy; 2026 POS Tec &middot; Proyecto escolar de la materia Tecnologías &middot; Hecho con HTML5</small></p>
     </footer>
 
+    <!-- Archivo de JavaScript básico -->
+    <script src="app.js"></script>
 </body>
 </html>
