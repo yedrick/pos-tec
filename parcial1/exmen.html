@@ -1,29 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Lavanderia</title>
-    <style>
-        .oculto {
-            display: none;
-        }
-    </style>
+    <title>Lavanderia Burbujas</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <!-- TITLE Y H1
 - title: Lavanderia Burbujas
 - h1 (dentro del header): Lavanderia Burbujas -->
-    <title>La Lavanderia</title>
-    <h1>La Lavanderia</h1>
-
 
     <!-- - Inicio, que apunta a #inicio (el id va en el header)
     - Nuestros lavados, que apunta a #lavados
     - Contacto, que apunta a #contacto -->
     <header id="inicio">
+        <h1>Lavanderia Burbujas</h1>
         <nav>
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
@@ -40,11 +34,9 @@
 Lavado por kilo - Bs 15
 Planchado de camisa - Bs 8
 Lavado de edredon - Bs 35 -->
-
-
     <section id="lavados">
         <h2>Nuestros lavados</h2>
-        <p>Presentando la lavanderia</p>
+        <p>Somos Lavandería Burbujas, tu mejor opción para el lavado y cuidado de tus prendas con rapidez, frescura y la mejor calidad.</p>
         <ul>
             <li>Lavado por kilo - Bs 15</li>
             <li>Planchado de camisa - Bs 8</li>
@@ -64,18 +56,18 @@ Lavado de edredon - Bs 35 -->
 - un parrafo vacio: p id="mensaje" class="oculto" -->
     <section id="contacto">
         <h2>Deja tu encargo</h2>
-        <p>Presentando la lavanderia</p>
         <form>
             <label for="nombre">Nombre completo</label>
             <input type="text" id="nombre" required>
+
             <label for="correo">Correo electronico</label>
             <input type="email" id="correo" required>
+
             <label for="encargo">Tu encargo</label>
             <textarea id="encargo"></textarea>
         </form>
         <button type="button" id="btn-confirmar">Confirmar encargo</button>
         <p id="mensaje" class="oculto"></p>
-
     </section>
 
     <!-- FOOTER
