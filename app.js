@@ -169,3 +169,37 @@ if (btnEspera) {
         alert('⏸ Venta puesta en espera. Puedes continuar atendiendo a otro cliente.');
     });
 }
+
+// -----------------------------------------------------------------------------
+// 6. MENÚ DE HAMBURGUESA (RESPONSIVO Y BÁSICO)
+// -----------------------------------------------------------------------------
+const btnMenu = document.getElementById('btn-menu');
+const iconoMenu = document.getElementById('icono-menu');
+const navPrincipal = document.getElementById('nav-principal');
+
+if (btnMenu && navPrincipal) {
+    // Al hacer clic en el botón de hamburguesa:
+    btnMenu.addEventListener('click', function () {
+        // Alternar la clase 'activo'
+        const estaAbierto = navPrincipal.classList.toggle('activo');
+
+        // Cambiar el icono entre ☰ y ✕
+        if (estaAbierto) {
+            iconoMenu.textContent = '✕';
+        } else {
+            iconoMenu.textContent = '☰';
+        }
+    });
+
+    // Cerrar automáticamente el menú al hacer clic en un enlace
+    const enlacesNav = navPrincipal.querySelectorAll('a');
+    enlacesNav.forEach(function (enlace) {
+        enlace.addEventListener('click', function () {
+            navPrincipal.classList.remove('activo');
+            if (iconoMenu) {
+                iconoMenu.textContent = '☰';
+            }
+        });
+    });
+}
+

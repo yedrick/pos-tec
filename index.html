@@ -12,12 +12,17 @@
     <header id="inicio">
         <div class="header-top">
             <h1>🛒 POS Tec</h1>
-            <button id="theme-toggle" class="btn-theme" type="button" aria-label="Cambiar modo de color">
-                <span id="theme-icon">🌙</span> <span id="theme-text">Modo Oscuro</span>
-            </button>
+            <div class="header-actions">
+                <button id="theme-toggle" class="btn-theme" type="button" aria-label="Cambiar modo de color">
+                    <span id="theme-icon">🌙</span> <span id="theme-text">Modo Oscuro</span>
+                </button>
+                <button id="btn-menu" class="btn-menu" type="button" aria-label="Abrir o cerrar menú de navegación">
+                    <span id="icono-menu">☰</span> <span>Menú</span>
+                </button>
+            </div>
         </div>
         <p><em>Sistema de <abbr title="Point of Sale">POS</abbr> (Punto de Venta) para pequeños negocios</em></p>
-        <nav aria-label="Navegación principal">
+        <nav id="nav-principal" aria-label="Navegación principal">
             <ul>
                 <li><a href="#inicio">🏠 Inicio</a></li>
                 <li><a href="#catalogo">📦 Catálogo</a></li>
