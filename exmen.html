@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Lavanderia</title>
+</head>
+
+<body>
+    <!-- TITLE Y H1
+- title: Lavanderia Burbujas
+- h1 (dentro del header): Lavanderia Burbujas -->
+    <title>La Lavanderia</title>
+    <h1>La Lavanderia</h1>
+
+
+    <!-- - Inicio, que apunta a #inicio (el id va en el header)
+    - Nuestros lavados, que apunta a #lavados
+    - Contacto, que apunta a #contacto -->
+    <header id="inicio">
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#lavados">Nuestros lavados</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- SECTION 1: id="lavados"
+- h2: Nuestros lavados
+- Un parrafo corto de una o dos lineas presentando la lavanderia (lo escriben ustedes).
+- Una lista ul con exactamente estos 3 items:
+Lavado por kilo - Bs 15
+Planchado de camisa - Bs 8
+Lavado de edredon - Bs 35 -->
+
+
+    <section id="lavados">
+        <h2>Nuestros lavados</h2>
+        <p>Presentando la lavanderia</p>
+        <ul>
+            <li>Lavado por kilo - Bs 15</li>
+            <li>Planchado de camisa - Bs 8</li>
+            <li>Lavado de edredon - Bs 35</li>
+        </ul>
+    </section>
+
+    <!-- SECTION 2: id="contacto"
+- h2: Deja tu encargo
+- Un formulario con estos 3 campos, cada uno con su label conectado con for:
+1. Nombre completo: input type="text" id="nombre" required
+2. Correo electronico: input type="email" id="correo" required
+3. Tu encargo: textarea id="encargo"
+- Despues de cerrar el formulario (fuera del form) van el boton y el parrafo vacio:
+- un boton: button type="button" id="btn-confirmar" con el texto Confirmar encargo
+(va con type="button" a proposito, asi la pagina no se recarga)
+- un parrafo vacio: p id="mensaje" class="oculto" -->
+    <section id="contacto">
+        <h2>Deja tu encargo</h2>
+        <p>Presentando la lavanderia</p>
+        <form>
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" required>
+            <label for="correo">Correo electronico</label>
+            <input type="email" id="correo" required>
+            <label for="encargo">Tu encargo</label>
+            <textarea id="encargo"></textarea>
+        </form>
+        <button type="button" id="btn-confirmar">Confirmar encargo</button>
+        <p id="mensaje" class="oculto"></p>
+
+    </section>
+
+    <!-- FOOTER
+Parcial 1 - [su nombre completo] - 12 de octubre de 2026 -->
+    <footer>
+        <p>
+            Parcial 1 - Yerson Jarandilla Vicente - 12 de octubre de 2026
+        </p>
+    </footer>
+
+</body>
+
+</html>
