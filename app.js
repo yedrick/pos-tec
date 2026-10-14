@@ -203,3 +203,201 @@ if (btnMenu && navPrincipal) {
     });
 }
 
+// -----------------------------------------------------------------------------
+// 7. FORMULARIO DE CONTACTO: VALIDACIÓN CON JAVASCRIPT (novalidate)
+// -----------------------------------------------------------------------------
+const formContacto = document.getElementById('form-contacto');
+const inputNombre = document.getElementById('contacto-nombre');
+const inputEmail = document.getElementById('contacto-email');
+const inputTitulo = document.getElementById('contacto-titulo');
+const inputMensaje = document.getElementById('contacto-mensaje');
+const alertaContacto = document.getElementById('contacto-alerta');
+
+// Funciones para marcar error o éxito visual en cada campo
+function marcarErrorCampo(input, elementoErrorId, mensaje) {
+    if (!input) return;
+    input.classList.add('input-error');
+    input.classList.remove('input-valido');
+    const spanError = document.getElementById(elementoErrorId);
+    if (spanError) {
+        spanError.textContent = '⚠️ ' + mensaje;
+        spanError.classList.add('visible');
+    }
+}
+
+function marcarCampoValido(input, elementoErrorId) {
+    if (!input) return;
+    input.classList.remove('input-error');
+    input.classList.add('input-valido');
+    const spanError = document.getElementById(elementoErrorId);
+    if (spanError) {
+        spanError.textContent = '';
+        spanError.classList.remove('visible');
+    }
+}
+
+function limpiarEstadoCampo(input, elementoErrorId) {
+    if (!input) return;
+    input.classList.remove('input-error', 'input-valido');
+    const spanError = document.getElementById(elementoErrorId);
+    if (spanError) {
+        spanError.textContent = '';
+        spanError.classList.remove('visible');
+    }
+}
+
+// Validación de formato de email con expresión regular estándar
+function validarFormatoEmail(correo) {
+    const patronEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return patronEmail.test(correo);
+}
+
+// Validación específica del Nombre
+function validarNombre() {
+    const valor = inputNombre.value.trim();
+    if (valor === '') {
+        marcarErrorCampo(inputNombre, 'error-contacto-nombre', 'El nombre es obligatorio.');
+        return 'El campo "Nombre" no puede estar vacío.';
+    } else if (valor.length < 3) {
+        marcarErrorCampo(inputNombre, 'error-contacto-nombre', 'Debe tener al menos 3 caracteres.');
+        return 'El "Nombre" debe tener al menos 3 caracteres.';
+    } else {
+        marcarCampoValido(inputNombre, 'error-contacto-nombre');
+        return null;
+    }
+}
+
+// Validación específica del Email
+function validarEmail() {
+    const valor = inputEmail.value.trim();
+    if (valor === '') {
+        marcarErrorCampo(inputEmail, 'error-contacto-email', 'El correo electrónico es obligatorio.');
+        return 'El campo "Correo electrónico" es obligatorio.';
+    } else if (!validarFormatoEmail(valor)) {
+        marcarErrorCampo(inputEmail, 'error-contacto-email', 'Ingresa un correo válido (ej. usuario@correo.com).');
+        return 'El "Correo electrónico" no tiene un formato válido (ejemplo: usuario@correo.com).';
+    } else {
+        marcarCampoValido(inputEmail, 'error-contacto-email');
+        return null;
+    }
+}
+
+// Validación del Título / Asunto
+function validarTitulo() {
+    const valor = inputTitulo.value.trim();
+    if (valor === '') {
+        marcarErrorCampo(inputTitulo, 'error-contacto-titulo', 'El asunto o título es obligatorio.');
+        return 'El campo "Título o Asunto" es obligatorio.';
+    } else if (valor.length < 3) {
+        marcarErrorCampo(inputTitulo, 'error-contacto-titulo', 'Debe tener al menos 3 caracteres.');
+        return 'El "Título o Asunto" debe tener al menos 3 caracteres.';
+    } else {
+        marcarCampoValido(inputTitulo, 'error-contacto-titulo');
+        return null;
+    }
+}
+
+// Validación del Mensaje
+function validarMensaje() {
+    const valor = inputMensaje.value.trim();
+    if (valor === '') {
+        marcarErrorCampo(inputMensaje, 'error-contacto-mensaje', 'El mensaje no puede estar vacío.');
+        return 'El campo "Mensaje" no puede estar vacío.';
+    } else if (valor.length < 10) {
+        marcarErrorCampo(inputMensaje, 'error-contacto-mensaje', 'El mensaje debe tener al menos 10 caracteres.');
+        return 'El "Mensaje" debe contener al menos 10 caracteres explicativos.';
+    } else {
+        marcarCampoValido(inputMensaje, 'error-contacto-mensaje');
+        return null;
+    }
+}
+
+// Inicialización de escuchadores de eventos para el formulario
+if (formContacto) {
+    // Validación interactiva mientras el usuario escribe o corrige
+    inputNombre.addEventListener('input', validarNombre);
+    inputEmail.addEventListener('input', validarEmail);
+    inputTitulo.addEventListener('input', validarTitulo);
+    inputMensaje.addEventListener('input', validarMensaje);
+
+    // Evento Submit: validación principal al hacer clic en "Enviar"
+    formContacto.addEventListener('submit', function (evento) {
+        // Cancelar el envío tradicional del navegador
+        evento.preventDefault();
+
+        const listaErrores = [];
+
+        // Ejecutar validaciones y recopilar errores
+        const errorNombre = validarNombre();
+        if (errorNombre) listaErrores.push(errorNombre);
+
+        const errorEmail = validarEmail();
+        if (errorEmail) listaErrores.push(errorEmail);
+
+        const errorTitulo = validarTitulo();
+        if (errorTitulo) listaErrores.push(errorTitulo);
+
+        const errorMensaje = validarMensaje();
+        if (errorMensaje) listaErrores.push(errorMensaje);
+
+        // Si existen errores, se muestran en la parte inferior del formulario
+        if (listaErrores.length > 0) {
+            alertaContacto.className = 'alerta-formulario alerta-error';
+            alertaContacto.innerHTML = `
+                <div class="alerta-titulo">❌ Corrige los siguientes errores antes de continuar:</div>
+                <ul class="alerta-lista">
+                    ${listaErrores.map(function (err) { return '<li>' + err + '</li>'; }).join('')}
+                </ul>
+            `;
+            alertaContacto.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            // Enfocar automáticamente el primer campo que tuvo error
+            if (errorNombre) {
+                inputNombre.focus();
+            } else if (errorEmail) {
+                inputEmail.focus();
+            } else if (errorTitulo) {
+                inputTitulo.focus();
+            } else if (errorMensaje) {
+                inputMensaje.focus();
+            }
+        } else {
+            // Si todo es válido, mostrar mensaje de éxito en la parte inferior
+            const nombreEnviado = inputNombre.value.trim();
+            const emailEnviado = inputEmail.value.trim();
+            const tituloEnviado = inputTitulo.value.trim();
+
+            alertaContacto.className = 'alerta-formulario alerta-exito';
+            alertaContacto.innerHTML = `
+                <div class="alerta-titulo">✅ ¡Mensaje enviado con éxito!</div>
+                <p style="margin: 0.25rem 0 0;">
+                    Gracias <strong>${nombreEnviado}</strong>, hemos recibido tu consulta sobre
+                    "<em>${tituloEnviado}</em>". Te responderemos a <strong>${emailEnviado}</strong> a la brevedad.
+                </p>
+            `;
+
+            // Resetear formulario y remover estilos de validación
+            formContacto.reset();
+            limpiarEstadoCampo(inputNombre, 'error-contacto-nombre');
+            limpiarEstadoCampo(inputEmail, 'error-contacto-email');
+            limpiarEstadoCampo(inputTitulo, 'error-contacto-titulo');
+            limpiarEstadoCampo(inputMensaje, 'error-contacto-mensaje');
+
+            alertaContacto.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    });
+
+    // Evento Reset: limpiar formulario y remover mensajes/alertas
+    formContacto.addEventListener('reset', function () {
+        setTimeout(function () {
+            limpiarEstadoCampo(inputNombre, 'error-contacto-nombre');
+            limpiarEstadoCampo(inputEmail, 'error-contacto-email');
+            limpiarEstadoCampo(inputTitulo, 'error-contacto-titulo');
+            limpiarEstadoCampo(inputMensaje, 'error-contacto-mensaje');
+            alertaContacto.className = 'alerta-formulario';
+            alertaContacto.innerHTML = '';
+        }, 10);
+    });
+}
+
+

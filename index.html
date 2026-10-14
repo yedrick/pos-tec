@@ -29,6 +29,7 @@
                 <li><a href="#carrito">🛒 Carrito</a></li>
                 <li><a href="#pago">💳 Cobro</a></li>
                 <li><a href="#reporte">📊 Reportes</a></li>
+                <li><a href="#contacto">✉️ Contacto</a></li>
                 <li><a href="#acerca">ℹ️ Acerca de</a></li>
             </ul>
         </nav>
@@ -500,9 +501,58 @@ TOTAL                 $149.64
 
         <hr>
 
+        <!-- ============ CONTACTO ============ -->
+        <section id="contacto">
+            <h2>✉️ 5. Contáctanos</h2>
+            <p>
+                ¿Tienes dudas, sugerencias o requieres soporte técnico con <strong>POS Tec</strong>?
+                Completa el siguiente formulario y nos pondremos en contacto contigo a la brevedad.
+            </p>
+
+            <form id="form-contacto" class="form-contacto" novalidate>
+                <div class="form-grupo">
+                    <label for="contacto-nombre">Nombre completo <span class="obligatorio" aria-hidden="true">*</span></label>
+                    <input type="text" id="contacto-nombre" name="nombre" placeholder="Ingresa tu nombre y apellido" autocomplete="name">
+                    <span class="campo-error" id="error-contacto-nombre" aria-live="polite"></span>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="contacto-email">Correo electrónico <span class="obligatorio" aria-hidden="true">*</span></label>
+                    <input type="email" id="contacto-email" name="email" placeholder="ejemplo@correo.com" autocomplete="email">
+                    <span class="campo-error" id="error-contacto-email" aria-live="polite"></span>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="contacto-titulo">Título o Asunto <span class="obligatorio" aria-hidden="true">*</span></label>
+                    <input type="text" id="contacto-titulo" name="titulo" placeholder="Ej. Duda sobre corte de caja o reporte">
+                    <span class="campo-error" id="error-contacto-titulo" aria-live="polite"></span>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="contacto-mensaje">Mensaje <span class="obligatorio" aria-hidden="true">*</span></label>
+                    <textarea id="contacto-mensaje" name="mensaje" rows="4" placeholder="Escribe detalladamente tu mensaje aquí..."></textarea>
+                    <span class="campo-error" id="error-contacto-mensaje" aria-live="polite"></span>
+                </div>
+
+                <div class="form-acciones">
+                    <button type="submit" id="btn-enviar-contacto" class="btn-contacto-enviar">
+                        📤 Enviar mensaje
+                    </button>
+                    <button type="reset" id="btn-limpiar-contacto" class="btn-contacto-limpiar">
+                        🧹 Limpiar campos
+                    </button>
+                </div>
+
+                <!-- Zona de errores / confirmación en la parte inferior del formulario -->
+                <div id="contacto-alerta" class="alerta-formulario" role="alert" aria-live="polite"></div>
+            </form>
+        </section>
+
+        <hr>
+
         <!-- ============ ACERCA DE ============ -->
         <section id="acerca">
-            <h2>Acerca de</h2>
+            <h2>ℹ️ 6. Acerca de</h2>
             <details>
                 <summary>Información del proyecto</summary>
                 <table border="1" cellpadding="6" cellspacing="0">
@@ -530,6 +580,7 @@ TOTAL                 $149.64
                 <li><a href="#carrito">Carrito</a></li>
                 <li><a href="#pago">Pago</a></li>
                 <li><a href="#reporte">Reporte</a></li>
+                <li><a href="#contacto">Contacto</a></li>
                 <li><a href="#acerca">Acerca de</a></li>
             </ul>
         </nav>

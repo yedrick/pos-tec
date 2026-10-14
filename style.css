@@ -846,6 +846,193 @@ footer address {
     margin-bottom: 0.5rem;
 }
 
+/* ---------- 10. FORMULARIO DE CONTACTO Y ESTILOS DE VALIDACIÓN ---------- */
+#contacto {
+    max-width: 100%;
+}
+
+.form-contacto {
+    max-width: 650px;
+    margin-top: 1rem;
+}
+
+.form-contacto .form-grupo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
+    position: relative;
+}
+
+.form-contacto label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    margin-bottom: 0.4rem;
+}
+
+.obligatorio {
+    color: var(--danger);
+    font-weight: 700;
+    margin-left: 0.2rem;
+}
+
+.form-contacto input,
+.form-contacto textarea {
+    width: 100%;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.form-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.btn-contacto-enviar {
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    padding: 0.7rem 1.6rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.btn-contacto-enviar:hover {
+    background: var(--primary-hover);
+}
+
+.btn-contacto-limpiar {
+    background: var(--bg-card);
+    color: var(--text-muted);
+    border: 1px solid var(--border-hover);
+    padding: 0.7rem 1.3rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-contacto-limpiar:hover {
+    background: var(--bg-muted);
+    color: var(--text-main);
+}
+
+/* ==========================================================================
+   ESTILOS DE VALIDACIÓN (CSS)
+   ========================================================================== */
+
+/* 1. Estado del input cuando contiene error */
+.input-error {
+    border-color: var(--danger) !important;
+    background-color: var(--danger-light) !important;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15) !important;
+}
+
+/* 2. Estado del input cuando es válido */
+.input-valido {
+    border-color: var(--success) !important;
+    box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15) !important;
+}
+
+/* 3. Mensaje de error individual debajo de cada input */
+.campo-error {
+    display: none;
+    font-size: 0.85rem;
+    color: var(--danger);
+    font-weight: 500;
+    margin-top: 0.35rem;
+}
+
+.campo-error.visible {
+    display: block;
+    animation: fadeInError 0.2s ease-in-out;
+}
+
+/* 4. Caja de alerta / error en la parte inferior del formulario */
+.alerta-formulario {
+    display: none;
+    margin-top: 1.25rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    animation: slideDownAlert 0.25s ease-out;
+}
+
+/* Estilo para error global */
+.alerta-formulario.alerta-error {
+    display: block;
+    background-color: var(--danger-light);
+    border: 1px solid var(--danger);
+    color: #991b1b;
+}
+
+body.dark-mode .alerta-formulario.alerta-error {
+    background-color: rgba(239, 68, 68, 0.18);
+    border-color: var(--danger);
+    color: #fca5a5;
+}
+
+/* Estilo para éxito */
+.alerta-formulario.alerta-exito {
+    display: block;
+    background-color: var(--success-light);
+    border: 1px solid var(--success);
+    color: #065f46;
+}
+
+body.dark-mode .alerta-formulario.alerta-exito {
+    background-color: rgba(16, 185, 129, 0.18);
+    border-color: var(--success);
+    color: #a7f3d0;
+}
+
+.alerta-titulo {
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.alerta-lista {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.alerta-lista li {
+    margin-bottom: 0.25rem;
+}
+
+/* Animaciones sutiles */
+@keyframes fadeInError {
+    from {
+        opacity: 0;
+        transform: translateY(-3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDownAlert {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* ---------- 11. RESPONSIVE / ADAPTABILIDAD ---------- */
 @media (max-width: 768px) {
     body {
@@ -919,6 +1106,14 @@ footer address {
     #pago button {
         width: 100%;
         margin-bottom: 0.5rem;
+    }
+
+    .form-acciones {
+        flex-direction: column;
+    }
+
+    .form-acciones button {
+        width: 100%;
     }
 }
 
