@@ -42,16 +42,25 @@ const selectCategoria = document.getElementById('categoria');
 const btnLimpiar = document.getElementById('btn-limpiar-filtro');
 const tablaCatalogo = document.getElementById('tabla-catalogo');
 
+// Función auxiliar para quitar acentos y normalizar texto
+function normalizarTexto(cadena) {
+    return (cadena || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[̀-ͯ]/g, '')
+        .trim();
+}
+
 function filtrarProductos() {
     if (!tablaCatalogo) return;
 
-    const texto = inputBuscar.value.toLowerCase().trim();
-    const categoria = selectCategoria.value.toLowerCase().trim();
+    const texto = normalizarTexto(inputBuscar.value);
+    const categoria = normalizarTexto(selectCategoria.value);
     const filas = tablaCatalogo.querySelectorAll('tbody tr');
 
     filas.forEach(function (fila) {
-        const textoFila = fila.textContent.toLowerCase();
-        const categoriaFila = fila.children[2] ? fila.children[2].textContent.toLowerCase() : '';
+        const textoFila = normalizarTexto(fila.textContent);
+        const categoriaFila = fila.children[2] ? normalizarTexto(fila.children[2].textContent) : '';
 
         const coincideTexto = texto === '' || textoFila.includes(texto);
         const coincideCategoria = categoria === '' || categoriaFila.includes(categoria);
@@ -376,8 +385,12 @@ if (formContacto) {
                 </p>
             `;
 
-            // Resetear formulario y remover estilos de validación
-            formContacto.reset();
+            // Limpiar valores de los campos y remover estados de validación
+            // (Se limpian manualmente para evitar que el evento reset borre el mensaje de éxito)
+            inputNombre.value = '';
+            inputEmail.value = '';
+            inputTitulo.value = '';
+            inputMensaje.value = '';
             limpiarEstadoCampo(inputNombre, 'error-contacto-nombre');
             limpiarEstadoCampo(inputEmail, 'error-contacto-email');
             limpiarEstadoCampo(inputTitulo, 'error-contacto-titulo');
