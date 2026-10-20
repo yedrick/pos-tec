@@ -371,32 +371,9 @@ if (formContacto) {
                 inputMensaje.focus();
             }
         } else {
-            // Si todo es válido, mostrar mensaje de éxito en la parte inferior
-            const nombreEnviado = inputNombre.value.trim();
-            const emailEnviado = inputEmail.value.trim();
-            const tituloEnviado = inputTitulo.value.trim();
-
-            alertaContacto.className = 'alerta-formulario alerta-exito';
-            alertaContacto.innerHTML = `
-                <div class="alerta-titulo">✅ ¡Mensaje enviado con éxito!</div>
-                <p style="margin: 0.25rem 0 0;">
-                    Gracias <strong>${nombreEnviado}</strong>, hemos recibido tu consulta sobre
-                    "<em>${tituloEnviado}</em>". Te responderemos a <strong>${emailEnviado}</strong> a la brevedad.
-                </p>
-            `;
-
-            // Limpiar valores de los campos y remover estados de validación
-            // (Se limpian manualmente para evitar que el evento reset borre el mensaje de éxito)
-            inputNombre.value = '';
-            inputEmail.value = '';
-            inputTitulo.value = '';
-            inputMensaje.value = '';
-            limpiarEstadoCampo(inputNombre, 'error-contacto-nombre');
-            limpiarEstadoCampo(inputEmail, 'error-contacto-email');
-            limpiarEstadoCampo(inputTitulo, 'error-contacto-titulo');
-            limpiarEstadoCampo(inputMensaje, 'error-contacto-mensaje');
-
-            alertaContacto.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            // Validación exitosa: enviar el formulario al servidor PHP
+            // Se usa submit() nativo para que el navegador haga el POST a procesar_contacto.php
+            formContacto.submit();
         }
     });
 
