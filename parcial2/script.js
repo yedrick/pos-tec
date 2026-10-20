@@ -1,51 +1,26 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('form-horno');
-    const aviso = document.getElementById('aviso-horno');
+const formulario = document.querySelector("#form-horno");
+const aviso = document.querySelector("#aviso-horno");
 
-    form.addEventListener('submit', function (e) {
-        const nombre = document.getElementById('nombre').value.trim();
-        const correo = document.getElementById('correo_electronico').value.trim();
-        const pedido = document.getElementById('salteñas').value.trim();
+function valFormulario(event) {
+    const nombre = document.querySelector("#nombre").value;
+    const correo = document.querySelector("#correo").value;
+    const pedido = document.querySelector("#pedido").value;
 
-        // Limpiar aviso anterior
-        aviso.textContent = '';
-        aviso.className = 'aviso';
+    if (nombre == "" || correo == "") {
+        event.preventDefault();
+        aviso.textContent = "Sin tu nombre y tu correo no anotamos el pedido.";
+        aviso.classList.add("error");
+        aviso.classList.remove("exito");
+    } else if (!correo.includes("@")) {
+        event.preventDefault();
+        aviso.textContent = "A ese correo le falta el arroba - corregilo antes de enviar.";
+        aviso.classList.add("error");
+        aviso.classList.remove("exito");
+    } else {
+        aviso.textContent = "Pedido tomado - te atiende Yerson Jarandilla Vicente";
+        aviso.classList.add("exito");
+        aviso.classList.remove("error");
+    }
+}
 
-        // Validar nombre
-        if (nombre === '') {
-            e.preventDefault();
-            aviso.textContent = 'Por favor, ingresa tu nombre completo.';
-            aviso.classList.add('error');
-            return;
-        }
-
-        // Validar correo
-        if (correo === '') {
-            e.preventDefault();
-            aviso.textContent = 'Por favor, ingresa tu correo electrónico.';
-            aviso.classList.add('error');
-            return;
-        }
-
-        // Validar formato de correo
-        const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!regexCorreo.test(correo)) {
-            e.preventDefault();
-            aviso.textContent = 'El correo electrónico no tiene un formato válido.';
-            aviso.classList.add('error');
-            return;
-        }
-
-        // Validar pedido
-        if (pedido === '') {
-            e.preventDefault();
-            aviso.textContent = 'Por favor, indica qué salteñas deseas pedir.';
-            aviso.classList.add('error');
-            return;
-        }
-
-        // Todo bien
-        aviso.textContent = 'Enviando pedido...';
-        aviso.classList.add('exito');
-    });
-});
+formulario.addEventListener("submit", valFormulario);
