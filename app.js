@@ -331,8 +331,6 @@ if (formContacto) {
 
     // Evento Submit: validación principal al hacer clic en "Enviar"
     formContacto.addEventListener('submit', function (evento) {
-        // Cancelar el envío tradicional del navegador
-        evento.preventDefault();
 
         const listaErrores = [];
 
@@ -349,8 +347,10 @@ if (formContacto) {
         const errorMensaje = validarMensaje();
         if (errorMensaje) listaErrores.push(errorMensaje);
 
-        // Si existen errores, se muestran en la parte inferior del formulario
+        // Si existen errores, bloquear el envío y mostrarlos
         if (listaErrores.length > 0) {
+            evento.preventDefault();
+
             alertaContacto.className = 'alerta-formulario alerta-error';
             alertaContacto.innerHTML = `
                 <div class="alerta-titulo">❌ Corrige los siguientes errores antes de continuar:</div>
@@ -370,11 +370,8 @@ if (formContacto) {
             } else if (errorMensaje) {
                 inputMensaje.focus();
             }
-        } else {
-            // Validación exitosa: enviar el formulario al servidor PHP
-            // Se usa submit() nativo para que el navegador haga el POST a procesar_contacto.php
-            formContacto.submit();
         }
+        // Si no hay errores, el formulario se envía normalmente al PHP
     });
 
     // Evento Reset: limpiar formulario y remover mensajes/alertas
