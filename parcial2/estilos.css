@@ -1,0 +1,13 @@
+.aviso {
+    display: none;
+}
+
+.aviso.error {
+    display: block;
+    color: #b00020;
+}
+
+.aviso.exito {
+    display: block;
+    color: #1b7f3b;
+}
