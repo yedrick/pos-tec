@@ -1,25 +1,17 @@
 <?php
-// ============================================================================
-// procesar_contacto.php — Procesa el formulario de contacto de POS Tec
-// Recibe los datos vía POST y los muestra con echo
-// ============================================================================
 
-// Solo aceptar método POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.html');
     exit;
 }
 
-// Recibir y sanitizar los datos del formulario
 $nombre  = isset($_POST['nombre'])  ? htmlspecialchars(trim($_POST['nombre']),  ENT_QUOTES, 'UTF-8') : '';
 $email   = isset($_POST['email'])   ? htmlspecialchars(trim($_POST['email']),   ENT_QUOTES, 'UTF-8') : '';
 $titulo  = isset($_POST['titulo'])  ? htmlspecialchars(trim($_POST['titulo']),  ENT_QUOTES, 'UTF-8') : '';
 $mensaje = isset($_POST['mensaje']) ? htmlspecialchars(trim($_POST['mensaje']), ENT_QUOTES, 'UTF-8') : '';
 
-// Fecha y hora de recepción
 $fecha = date('d/m/Y H:i:s');
 
-// Mostrar los datos con echo
 echo '<!DOCTYPE html>';
 echo '<html lang="es">';
 echo '<head>';
