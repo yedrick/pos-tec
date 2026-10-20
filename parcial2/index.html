@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salteñeria El Horno</title>
+</head>
+
+<body>
+    <header>
+        <h1>Salteñeria El Horno</h1>
+        <p>Las salteñas ma jugosas y tradicionales , preparadasal horno todas las mañanas con la mejor calidad</p>
+    </header>
+    <main>
+        <form id="form-horno" action="procesar.php" method="POST" novalidate>
+            <div>
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div>
+                <label for="correo_electronico">Correo electronico:</label>
+                <input type="email" id="correo_electronico" name="correo_electronico" required>
+            </div>
+            <div>
+                <label for="direccion">Que salteñas deseas pedir?:</label>
+                <textarea name="salteñas" id="salteñas"></textarea>
+            </div>
+            <div>
+                <button type="reset">Cancelar</button>
+                <button type="submit">Enviar pedido</button>
+            </div>
+            <p id="aviso-horno" class="aviso"></p>
+        </form>
+    </main>
+    <footer>
+        <p>Parcial 2 - Yerson Jarandilla Vicente</p>
+    </footer>
+</body>
+
+</html>
