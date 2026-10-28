@@ -1,43 +1,602 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="POS Tec - Punto de venta básico en HTML">
+    <title>POS Tec - Punto de Venta</title>
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
+</head>
+<body>
 
-@section('title', 'Dashboard')
+    <header id="inicio">
+        <div class="header-top">
+            <h1>🛒 POS Tec</h1>
+            <div class="header-actions">
+                {{-- Info del usuario y logout --}}
+                <span style="color: #94a3b8; font-size: 0.9rem;">👤 {{ Auth::user()->name }}</span>
+                <form method="POST" action="{{ route('logout') }}" style="display:inline; margin:0;">
+                    @csrf
+                    <button type="submit" style="background: rgba(255,107,107,0.2); color: #ff6b6b; border: 1px solid rgba(255,107,107,0.3); padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer;">Cerrar Sesión</button>
+                </form>
+                <button id="theme-toggle" class="btn-theme" type="button" aria-label="Cambiar modo de color">
+                    <span id="theme-icon">🌙</span> <span id="theme-text">Modo Oscuro</span>
+                </button>
+                <button id="btn-menu" class="btn-menu" type="button" aria-label="Abrir o cerrar menú de navegación">
+                    <span id="icono-menu">☰</span> <span>Menú</span>
+                </button>
+            </div>
+        </div>
+        <p><em>Sistema de <abbr title="Point of Sale">POS</abbr> (Punto de Venta) para pequeños negocios</em></p>
+        <nav id="nav-principal" aria-label="Navegación principal">
+            <ul>
+                <li><a href="#inicio">🏠 Inicio</a></li>
+                <li><a href="#catalogo">📦 Catálogo</a></li>
+                <li><a href="#carrito">🛒 Carrito</a></li>
+                <li><a href="#pago">💳 Cobro</a></li>
+                <li><a href="#reporte">📊 Reportes</a></li>
+                <li><a href="#contacto">✉️ Contacto</a></li>
+                <li><a href="#acerca">ℹ️ Acerca de</a></li>
+                <li><a href="/tortas">🎂 Tortas</a></li>
+            </ul>
+        </nav>
+        <hr>
+    </header>
 
-@section('content')
-<div class="dashboard-wrapper">
-    {{-- Nav superior --}}
-    <nav class="dashboard-nav">
-        <span class="brand">🛒 POS Laravel</span>
-        <div class="user-info">
-            <span class="user-name">{{ Auth::user()->name }}</span>
-            <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
-                @csrf
-                <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+    <main>
+
+        <!-- ============ BIENVENIDA ============ -->
+        <section id="bienvenida">
+            <h2>¡Bienvenido, {{ Auth::user()->name }}!</h2>
+            <p>
+                <strong>POS Tec</strong> es un sistema de punto de venta sencillo, pensado para
+                tiendas de abarrotes, papelerías, cafeterías y cualquier negocio pequeño que
+                necesite registrar sus ventas de forma rápida y ordenada.
+            </p>
+            <ul>
+                <li><strong>Vender rápido:</strong> agrega productos por código o desde el catálogo.</li>
+                <li><strong>Controlar inventario:</strong> consulta el stock disponible de cada producto.</li>
+                <li><strong>Cobrar como prefieras:</strong> efectivo, tarjeta o transferencia.</li>
+                <li><strong>Imprimir tickets:</strong> genera el comprobante de cada venta.</li>
+                <li><strong>Ver reportes:</strong> resumen de ventas del día.</li>
+            </ul>
+            <blockquote>
+                "Desde que usamos POS Tec cerramos la caja en cinco minutos."
+                <br><cite>— Doña Lupita, Abarrotes La Esquina</cite>
+            </blockquote>
+            <p><a href="#catalogo"><button type="button">Comenzar a vender ➜</button></a></p>
+        </section>
+
+        <hr>
+
+        <!-- ============ ASIDE: AVISOS Y AYUDA ============ -->
+        <aside id="avisos">
+            <h2>Avisos y ayuda rápida</h2>
+
+            <article>
+                <h3>📢 Promoción de la semana</h3>
+                <p><time datetime="2026-10-01">1 de octubre</time> al <time datetime="2026-10-07">7 de octubre</time>:
+                   2x1 en Galletas Marías usando el cupón <mark>PROMO10</mark>.</p>
+            </article>
+
+            <article>
+                <h3>⚠️ Inventario</h3>
+                <p>Productos con stock bajo: <mark>Agua Ciel 1L</mark>. Producto agotado: <mark>Jabón Zote</mark>.
+                   Avisar al encargado para resurtir.</p>
+            </article>
+
+            <article>
+                <h3>⌨️ Atajos de teclado</h3>
+                <dl>
+                    <dt><kbd>F2</kbd></dt><dd>Buscar producto</dd>
+                    <dt><kbd>F4</kbd></dt><dd>Ir al carrito</dd>
+                    <dt><kbd>F8</kbd></dt><dd>Cobrar venta</dd>
+                    <dt><kbd>Esc</kbd></dt><dd>Cancelar venta</dd>
+                </dl>
+            </article>
+        </aside>
+
+        <hr>
+
+        <!-- ============ SESIÓN ============ -->
+        <section id="sesion">
+            <h2>Sesión actual</h2>
+            <table border="1" cellpadding="6" cellspacing="0">
+                <tr>
+                    <th>Cajero</th><td>{{ Auth::user()->name }}</td>
+                    <th>Caja</th><td>1</td>
+                    <th>Fecha</th><td><time datetime="{{ date('Y-m-d') }}">{{ date('d/m/Y') }}</time></td>
+                    <th>Turno</th><td>Matutino</td>
+                    <th>Ticket</th><td>#000125</td>
+                </tr>
+            </table>
+        </section>
+
+        <hr>
+
+        <!-- ============ CATÁLOGO ============ -->
+        <section id="catalogo">
+            <h2>1. Catálogo de productos</h2>
+
+            <form id="form-catalogo">
+                <label for="buscar">Buscar producto:</label>
+                <input type="search" id="buscar" name="buscar" list="productos" placeholder="Nombre o código">
+                <datalist id="productos">
+                    <option value="001 - Coca Cola 600ml">
+                    <option value="002 - Sabritas Original">
+                    <option value="003 - Pan Bimbo Grande">
+                    <option value="004 - Leche Lala 1L">
+                    <option value="005 - Galletas Marías">
+                    <option value="006 - Agua Ciel 1L">
+                    <option value="007 - Jabón Zote">
+                    <option value="008 - Huevo (docena)">
+                </datalist>
+
+                <label for="categoria">Categoría:</label>
+                <select id="categoria" name="categoria">
+                    <option value="">Todas</option>
+                    <option value="bebidas">Bebidas</option>
+                    <option value="botanas">Botanas</option>
+                    <option value="panaderia">Panadería</option>
+                    <option value="lacteos">Lácteos</option>
+                    <option value="limpieza">Limpieza</option>
+                </select>
+
+                <button type="button" id="btn-limpiar-filtro">Limpiar</button>
             </form>
-        </div>
-    </nav>
 
-    {{-- Contenido principal --}}
-    <div class="dashboard-content">
-        <div class="welcome-card">
-            <div class="emoji">👋</div>
-            <h2>¡Hola, {{ Auth::user()->name }}!</h2>
-            <p>Has iniciado sesión correctamente. Tu sesión está protegida por middleware.</p>
-        </div>
+            <br>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value">✅</div>
-                <div class="stat-label">Sesión Activa</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">🔒</div>
-                <div class="stat-label">Middleware Auth</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">🗄️</div>
-                <div class="stat-label">SQLite</div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+            <table id="tabla-catalogo" border="1" cellpadding="6" cellspacing="0">
+                <caption><strong>Productos disponibles</strong></caption>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Nivel</th>
+                        <th>Cantidad</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Coca Cola 600ml</td>
+                        <td>Bebidas</td>
+                        <td>$18.00</td>
+                        <td>25</td>
+                        <td><meter value="25" min="0" max="50" low="10">25</meter></td>
+                        <td><input type="number" value="1" min="1" max="25" size="3"></td>
+                        <td><button type="button">➕ Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>Sabritas Original</td>
+                        <td>Botanas</td>
+                        <td>$15.00</td>
+                        <td>40</td>
+                        <td><meter value="40" min="0" max="50" low="10">40</meter></td>
+                        <td><input type="number" value="1" min="1" max="40" size="3"></td>
+                        <td><button type="button">➕ Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Pan Bimbo Grande</td>
+                        <td>Panadería</td>
+                        <td>$45.00</td>
+                        <td>10</td>
+                        <td><meter value="10" min="0" max="50" low="10">10</meter></td>
+                        <td><input type="number" value="1" min="1" max="10" size="3"></td>
+                        <td><button type="button">➕ Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>004</td>
+                        <td>Leche Lala 1L</td>
+                        <td>Lácteos</td>
+                        <td>$26.00</td>
+                        <td>18</td>
+                        <td><meter value="18" min="0" max="50" low="10">18</meter></td>
+                        <td><input type="number" value="1" min="1" max="18" size="3"></td>
+                        <td><button type="button">➕ Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>005</td>
+                        <td>Galletas Marías</td>
+                        <td>Botanas</td>
+                        <td>$22.00</td>
+                        <td>30</td>
+                        <td><meter value="30" min="0" max="50" low="10">30</meter></td>
+                        <td><input type="number" value="1" min="1" max="30" size="3"></td>
+                        <td><button type="button">➕ Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>006</td>
+                        <td><mark>Agua Ciel 1L</mark></td>
+                        <td>Bebidas</td>
+                        <td>$12.00</td>
+                        <td>4</td>
+                        <td><meter value="4" min="0" max="50" low="10">4</meter></td>
+                        <td><input type="number" value="1" min="1" max="4" size="3"></td>
+                        <td><button type="button">➕ Agregar</button></td>
+                    </tr>
+                    <tr>
+                        <td>007</td>
+                        <td><mark>Jabón Zote</mark></td>
+                        <td>Limpieza</td>
+                        <td>$20.00</td>
+                        <td>0</td>
+                        <td><meter value="0" min="0" max="50" low="10">0</meter></td>
+                        <td><input type="number" value="0" min="0" max="0" size="3" disabled></td>
+                        <td><button type="button" disabled>Agotado</button></td>
+                    </tr>
+                    <tr>
+                        <td>008</td>
+                        <td>Huevo (docena)</td>
+                        <td>Lácteos</td>
+                        <td>$48.00</td>
+                        <td>12</td>
+                        <td><meter value="12" min="0" max="50" low="10">12</meter></td>
+                        <td><input type="number" value="1" min="1" max="12" size="3"></td>
+                        <td><button type="button">➕ Agregar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><small>La barra de nivel se muestra en rojo cuando el stock es bajo (menos de 10 unidades).</small></p>
+        </section>
+
+        <hr>
+
+        <!-- ============ CARRITO ============ -->
+        <section id="carrito">
+            <h2>2. Carrito de compra</h2>
+
+            <table border="1" cellpadding="6" cellspacing="0">
+                <caption><strong>Ticket #000125</strong></caption>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Código</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio unitario</th>
+                        <th>Subtotal</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>001</td>
+                        <td>Coca Cola 600ml</td>
+                        <td><input type="number" value="2" min="1" size="3"></td>
+                        <td>$18.00</td>
+                        <td>$36.00</td>
+                        <td><button type="button">🗑 Quitar</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>003</td>
+                        <td>Pan Bimbo Grande</td>
+                        <td><input type="number" value="1" min="1" size="3"></td>
+                        <td>$45.00</td>
+                        <td>$45.00</td>
+                        <td><button type="button">🗑 Quitar</button></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>008</td>
+                        <td>Huevo (docena)</td>
+                        <td><input type="number" value="1" min="1" size="3"></td>
+                        <td>$48.00</td>
+                        <td>$48.00</td>
+                        <td><button type="button">🗑 Quitar</button></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" align="right">Artículos</td>
+                        <td colspan="2">4</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" align="right">Subtotal</td>
+                        <td colspan="2">$129.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" align="right">Descuento</td>
+                        <td colspan="2">-$0.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" align="right"><abbr title="Impuesto al Valor Agregado">IVA</abbr> (16%)</td>
+                        <td colspan="2">$20.64</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" align="right"><strong>TOTAL A PAGAR</strong></td>
+                        <td colspan="2"><strong><big>$149.64</big></strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <p>
+                <button type="button">🔄 Actualizar totales</button>
+                <button type="button">🧹 Vaciar carrito</button>
+            </p>
+
+            <figure>
+                <figcaption><strong>Vista previa del ticket</strong></figcaption>
+<pre>
+==============================
+         POS TEC
+   Abarrotes "Mi Negocio"
+   Ticket #000125  Caja 1
+   {{ date('d/m/Y') }}   Cajero: {{ Auth::user()->name }}
+==============================
+2  Coca Cola 600ml     $36.00
+1  Pan Bimbo Grande    $45.00
+1  Huevo (docena)      $48.00
+------------------------------
+Subtotal              $129.00
+IVA 16%                $20.64
+TOTAL                 $149.64
+==============================
+   ¡Gracias por su compra!
+</pre>
+            </figure>
+
+            <details>
+                <summary>Aplicar descuento o cupón</summary>
+                <form>
+                    <label for="cupon">Código de cupón:</label>
+                    <input type="text" id="cupon" name="cupon" placeholder="Ej. PROMO10">
+
+                    <label for="descuento">Descuento (%):</label>
+                    <input type="number" id="descuento" name="descuento" min="0" max="100" value="0">
+
+                    <button type="submit">Aplicar</button>
+                </form>
+            </details>
+        </section>
+
+        <hr>
+
+        <!-- ============ CLIENTE Y PAGO ============ -->
+        <section id="pago">
+            <h2>3. Cliente y pago</h2>
+
+            <form id="form-pago">
+                <fieldset>
+                    <legend>Datos del cliente (opcional)</legend>
+
+                    <label for="cliente">Nombre:</label>
+                    <input type="text" id="cliente" name="cliente" placeholder="Público en general">
+
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="10 dígitos">
+
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo" placeholder="cliente@correo.com">
+                    <br><br>
+
+                    <input type="checkbox" id="factura" name="factura">
+                    <label for="factura">Requiere factura</label>
+
+                    <label for="rfc"><abbr title="Registro Federal de Contribuyentes">RFC</abbr>:</label>
+                    <input type="text" id="rfc" name="rfc" maxlength="13" placeholder="XAXX010101000">
+                </fieldset>
+
+                <br>
+
+                <fieldset>
+                    <legend>Método de pago</legend>
+
+                    <input type="radio" id="efectivo" name="metodo" value="efectivo" checked>
+                    <label for="efectivo">💵 Efectivo</label>
+
+                    <input type="radio" id="tarjeta" name="metodo" value="tarjeta">
+                    <label for="tarjeta">💳 Tarjeta</label>
+
+                    <input type="radio" id="transferencia" name="metodo" value="transferencia">
+                    <label for="transferencia">🏦 Transferencia</label>
+
+                    <input type="radio" id="mixto" name="metodo" value="mixto">
+                    <label for="mixto">Mixto</label>
+
+                    <br><br>
+
+                    <table border="0" cellpadding="4">
+                        <tr>
+                            <td><label for="total">Total a pagar:</label></td>
+                            <td><input type="text" id="total" name="total" value="$149.64" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><label for="recibido">Monto recibido:</label></td>
+                            <td><input type="number" id="recibido" name="recibido" step="0.01" min="0" placeholder="0.00"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="cambio">Cambio:</label></td>
+                            <td><input type="text" id="cambio" name="cambio" value="$0.00" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><label for="referencia">Referencia / autorización:</label></td>
+                            <td><input type="text" id="referencia" name="referencia" placeholder="Solo tarjeta o transferencia"></td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <br>
+
+                <fieldset>
+                    <legend>Comprobante</legend>
+                    <input type="radio" id="imprimir" name="comprobante" value="imprimir" checked>
+                    <label for="imprimir">🖨 Imprimir ticket</label>
+
+                    <input type="radio" id="enviar" name="comprobante" value="correo">
+                    <label for="enviar">📧 Enviar por correo</label>
+
+                    <input type="radio" id="sin" name="comprobante" value="ninguno">
+                    <label for="sin">Sin comprobante</label>
+                </fieldset>
+
+                <br>
+
+                <label for="notas">Notas de la venta:</label><br>
+                <textarea id="notas" name="notas" rows="3" cols="50" placeholder="Observaciones..."></textarea>
+
+                <br><br>
+
+                <button type="submit" id="btn-cobrar"><strong>✅ COBRAR $149.64</strong></button>
+                <button type="button" id="btn-espera">⏸ Poner en espera</button>
+                <button type="reset" id="btn-cancelar">❌ Cancelar venta</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- ============ REPORTE ============ -->
+        <section id="reporte">
+            <h2>4. Reporte del día</h2>
+
+            <table border="1" cellpadding="6" cellspacing="0">
+                <caption><strong>Resumen de ventas - {{ date('d/m/Y') }}</strong></caption>
+                <thead>
+                    <tr>
+                        <th>Concepto</th>
+                        <th>Cantidad</th>
+                        <th>Importe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Ventas en efectivo</td><td>18</td><td>$2,340.00</td></tr>
+                    <tr><td>Ventas con tarjeta</td><td>9</td><td>$1,875.50</td></tr>
+                    <tr><td>Ventas por transferencia</td><td>3</td><td>$640.00</td></tr>
+                    <tr><td>Ventas canceladas</td><td>1</td><td>$85.00</td></tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total del día</th>
+                        <th>30</th>
+                        <th>$4,855.50</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <br>
+
+            <details>
+                <summary>Últimos tickets</summary>
+                <table border="1" cellpadding="6" cellspacing="0">
+                    <thead>
+                        <tr><th>Ticket</th><th>Hora</th><th>Método</th><th>Total</th><th>Estado</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>#000124</td><td>12:45</td><td>Efectivo</td><td>$96.00</td><td>Pagado</td></tr>
+                        <tr><td>#000123</td><td>12:30</td><td>Tarjeta</td><td>$310.00</td><td>Pagado</td></tr>
+                        <tr><td>#000122</td><td>12:10</td><td>Efectivo</td><td>$85.00</td><td><del>Cancelado</del></td></tr>
+                        <tr><td>#000121</td><td>11:52</td><td>Transferencia</td><td>$220.00</td><td>Pagado</td></tr>
+                    </tbody>
+                </table>
+            </details>
+
+            <p>
+                <button type="button">📊 Corte de caja</button>
+                <button type="button">📤 Exportar reporte</button>
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- ============ CONTACTO ============ -->
+        <section id="contacto">
+            <h2>✉️ 5. Contáctanos</h2>
+            <p>
+                ¿Tienes dudas, sugerencias o requieres soporte técnico con <strong>POS Tec</strong>?
+                Completa el siguiente formulario y nos pondremos en contacto contigo a la brevedad.
+            </p>
+
+            <form id="form-contacto" class="form-contacto" action="#" method="POST" novalidate>
+                @csrf
+                <div class="form-grupo">
+                    <label for="contacto-nombre">Nombre completo <span class="obligatorio" aria-hidden="true">*</span></label>
+                    <input type="text" id="contacto-nombre" name="nombre" placeholder="Ingresa tu nombre y apellido" autocomplete="name">
+                    <span class="campo-error" id="error-contacto-nombre" aria-live="polite"></span>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="contacto-email">Correo electrónico <span class="obligatorio" aria-hidden="true">*</span></label>
+                    <input type="email" id="contacto-email" name="email" placeholder="ejemplo@correo.com" autocomplete="email">
+                    <span class="campo-error" id="error-contacto-email" aria-live="polite"></span>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="contacto-titulo">Título o Asunto <span class="obligatorio" aria-hidden="true">*</span></label>
+                    <input type="text" id="contacto-titulo" name="titulo" placeholder="Ej. Duda sobre corte de caja o reporte">
+                    <span class="campo-error" id="error-contacto-titulo" aria-live="polite"></span>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="contacto-mensaje">Mensaje <span class="obligatorio" aria-hidden="true">*</span></label>
+                    <textarea id="contacto-mensaje" name="mensaje" rows="4" placeholder="Escribe detalladamente tu mensaje aquí..."></textarea>
+                    <span class="campo-error" id="error-contacto-mensaje" aria-live="polite"></span>
+                </div>
+
+                <div class="form-acciones">
+                    <button type="submit" id="btn-enviar-contacto" class="btn-contacto-enviar">
+                        📤 Enviar mensaje
+                    </button>
+                    <button type="reset" id="btn-limpiar-contacto" class="btn-contacto-limpiar">
+                        🧹 Limpiar campos
+                    </button>
+                </div>
+
+                <div id="contacto-alerta" class="alerta-formulario" role="alert" aria-live="polite"></div>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- ============ ACERCA DE ============ -->
+        <section id="acerca">
+            <h2>ℹ️ 6. Acerca de</h2>
+            <details>
+                <summary>Información del proyecto</summary>
+                <table border="1" cellpadding="6" cellspacing="0">
+                    <tr><th>Proyecto</th><td>POS Tec</td></tr>
+                    <tr><th>Versión</th><td>1.0</td></tr>
+                    <tr><th>Materia</th><td>Tecnologías</td></tr>
+                    <tr><th>Tecnología</th><td>Laravel + HTML5</td></tr>
+                    <tr><th>Autor</th><td>Yerson Jarandilla</td></tr>
+                </table>
+            </details>
+            <address>
+                Repositorio: <a href="https://github.com/yedrick/pos-tec" target="_blank">github.com/yedrick/pos-tec</a>
+            </address>
+        </section>
+
+    </main>
+
+    <hr>
+
+    <footer>
+        <nav aria-label="Navegación secundaria">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#carrito">Carrito</a></li>
+                <li><a href="#pago">Pago</a></li>
+                <li><a href="#reporte">Reporte</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#acerca">Acerca de</a></li>
+            </ul>
+        </nav>
+        <address>
+            Abarrotes "Mi Negocio" &middot; Calle Principal #123, Centro &middot;
+            Tel. <a href="tel:+525512345678">55 1234 5678</a>
+        </address>
+        <p><small>&copy; 2026 POS Tec &middot; Proyecto escolar de la materia Tecnologías &middot; Hecho con Laravel + HTML5</small></p>
+    </footer>
+
+    <script src="{{ asset('app.js') }}"></script>
+</body>
+</html>
