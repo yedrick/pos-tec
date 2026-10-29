@@ -48,8 +48,6 @@
                         Reportes</a></li>
                 <li><a href="{{ route('contacto') }}" class="{{ request()->routeIs('contacto') ? 'activo' : '' }}">✉️
                         Contacto</a></li>
-                <li><a href="{{ route('acerca') }}" class="{{ request()->routeIs('acerca') ? 'activo' : '' }}">ℹ️ Acerca
-                        de</a></li>
             </ul>
         </nav>
         <hr>
