@@ -23,6 +23,11 @@
 
         <br>
 
+        <label for="stock">Stock</label>
+        <input type="number" id="stock" name="stock">
+
+        <br>
+
         <button type="submit">Registrar torta</button>
     </form>
 

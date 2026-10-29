@@ -7,7 +7,7 @@
     <p>Hay {{ count($tortas) }} tortas en la vitrina.</p>
 
     @foreach ($tortas as $torta)
-        <p>{{ $torta->sabor }} - {{ $torta->precio }} Bs</p>
+        <p>{{ $torta->sabor }} - {{ $torta->precio }} Bs - Stock: {{ $torta->stock }}</p>
     @endforeach
 
     <p>Vitrina atendida por Yerson Jarandilla</p>
