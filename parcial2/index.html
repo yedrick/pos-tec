@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salteneria El Horno</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <header>
+        <h1>Salteneria El Horno</h1>
+        <p>Las salteñas más jugosas y tradicionales, preparadas al horno todas las mañanas con la mejor calidad</p>
+    </header>
+    <main>
+        <form id="form-horno" action="procesar.php" method="POST" novalidate>
+            <div>
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div>
+                <label for="correo">Correo electronico:</label>
+                <input type="email" id="correo" name="correo" required>
+            </div>
+            <div>
+                <label for="pedido">Que saltenas queres:</label>
+                <textarea id="pedido" name="pedido"></textarea>
+            </div>
+            <button type="submit">Hacer mi pedido</button>
+            <p id="aviso-horno" class="aviso"></p>
+        </form>
+    </main>
+    <footer>
+        <p>Parcial 2 - Yerson Jarandilla Vicente - 20 de octubre de 2026</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
