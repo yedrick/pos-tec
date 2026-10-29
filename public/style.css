@@ -1,0 +1,1483 @@
+/* ==========================================================================
+   POS TEC - ESTILOS CSS
+   Estilos base y configuración inicial
+   ========================================================================== */
+
+/* ---------- 1. VARIABLES Y TEMA ---------- */
+:root {
+    /* Paleta de colores */
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --primary-light: #eff6ff;
+
+    --success: #059669;
+    --success-hover: #047857;
+    --success-light: #ecfdf5;
+
+    --danger: #dc2626;
+    --danger-hover: #b91c1c;
+    --danger-light: #fef2f2;
+
+    --warning: #d97706;
+    --warning-light: #fffbeb;
+
+    /* Fondos y superficies */
+    --bg-body: #f1f5f9;
+    --bg-card: #ffffff;
+    --bg-muted: #f8fafc;
+    --bg-header: #1e293b;
+
+    /* Textos */
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+    --text-on-dark: #f8fafc;
+
+    /* Bordes y sombras */
+    --border: #e2e8f0;
+    --border-hover: #cbd5e1;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+
+    /* Tipografía */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+
+/* Variables para Modo Oscuro */
+body.dark-mode {
+    /* Paleta adaptada */
+    --primary: #3b82f6;
+    --primary-hover: #60a5fa;
+    --primary-light: #1e293b;
+
+    --success: #10b981;
+    --success-hover: #34d399;
+    --success-light: #064e3b;
+
+    --danger: #ef4444;
+    --danger-hover: #f87171;
+    --danger-light: #450a0a;
+
+    --warning: #f59e0b;
+    --warning-light: #451a03;
+
+    /* Fondos y superficies oscuras */
+    --bg-body: #090d16;
+    --bg-card: #131c2e;
+    --bg-muted: #1e293b;
+    --bg-header: #05080f;
+
+    /* Textos claros sobre fondo oscuro */
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-light: #64748b;
+    --text-on-dark: #ffffff;
+
+    /* Bordes y sombras oscuras */
+    --border: #243247;
+    --border-hover: #384b66;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+}
+
+/* Importar fuente Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ---------- 2. RESET Y ESTILOS BASE ---------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Contenedor principal */
+main, header, footer {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+hr {
+    border: none;
+    height: 0;
+    margin: 1.5rem 0;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+h1, h2, h3 {
+    color: var(--text-main);
+    margin-top: 0;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.4rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ---------- 3. ENCABEZADO Y NAVEGACIÓN ---------- */
+header#inicio {
+    background: var(--bg-header);
+    color: var(--text-on-dark);
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: background-color 0.3s ease;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+header h1 {
+    color: #ffffff;
+    font-size: 2rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Botón interactivo de Modo Oscuro / Claro */
+.btn-theme {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.5rem 0.9rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: all 0.2s ease;
+}
+
+.btn-theme:hover {
+    background-color: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-theme:active {
+    transform: translateY(0);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Botón de Menú Hamburguesa */
+.btn-menu {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.5rem 0.9rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: none; /* En escritorio se oculta */
+    align-items: center;
+    gap: 0.45rem;
+    transition: all 0.2s ease;
+}
+
+.btn-menu:hover {
+    background-color: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-2px);
+}
+
+.btn-menu:active {
+    transform: translateY(0);
+}
+
+header p {
+    color: #94a3b8;
+    margin: 0 0 1.25rem 0;
+    font-size: 0.95rem;
+}
+
+header nav {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.35rem 0.5rem;
+    border-radius: var(--radius-md);
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+header nav li {
+    margin: 0;
+    padding: 0;
+}
+
+header nav a {
+    color: #e2e8f0;
+    padding: 0.4rem 0.85rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+header nav a:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+header nav a.activo {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: inset 0 -2px 0 var(--primary, #38bdf8);
+}
+
+/* ---------- 4. TARJETAS (SECTIONS Y ASIDE) ---------- */
+section, aside#avisos {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    padding: 1.75rem 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+}
+
+/* Sección Bienvenida */
+#bienvenida {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-muted) 100%);
+    border-left: 5px solid var(--primary);
+}
+
+#bienvenida ul {
+    padding-left: 1.25rem;
+    line-height: 1.8;
+}
+
+#bienvenida blockquote {
+    background: var(--bg-muted);
+    border-left: 4px solid var(--primary);
+    margin: 1.25rem 0;
+    padding: 1rem 1.25rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-style: italic;
+    color: var(--text-main);
+}
+
+#bienvenida cite {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: normal;
+    font-weight: 600;
+}
+
+#bienvenida button {
+    background: var(--primary);
+    color: white;
+    font-size: 1.05rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+    transition: background 0.15s ease;
+}
+
+#bienvenida button:hover {
+    background: var(--primary-hover);
+}
+
+/* Aside: Avisos rápidos */
+#avisos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: var(--bg-muted);
+}
+
+#avisos h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+#avisos article {
+    background: var(--bg-card);
+    padding: 1.25rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+#avisos article:nth-of-type(1) { border-top: 3px solid var(--primary); }
+#avisos article:nth-of-type(2) { border-top: 3px solid var(--warning); }
+#avisos article:nth-of-type(3) { border-top: 3px solid #8b5cf6; }
+
+#avisos dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.4rem 0.8rem;
+    align-items: center;
+    margin: 0.5rem 0 0 0;
+}
+
+#avisos dt {
+    font-weight: 600;
+}
+
+#avisos dd {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Teclas kbd */
+kbd {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-bottom: 2px solid #94a3b8;
+    border-radius: 4px;
+    padding: 0.15rem 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #334155;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Marcado destacado */
+mark {
+    background: #fef08a;
+    color: #854d0e;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+/* ---------- 5. SESIÓN DE CAJA ---------- */
+#sesion table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--bg-card);
+}
+
+#sesion th {
+    background: var(--bg-muted);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    border: none;
+    border-right: 1px solid var(--border);
+}
+
+#sesion td {
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    border: none;
+    border-right: 1px solid var(--border);
+}
+
+#sesion td:last-child {
+    border-right: none;
+}
+
+/* ---------- 6. TABLAS (CATÁLOGO, CARRITO, REPORTES) ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    background: var(--bg-card);
+}
+
+table[border] {
+    border: 1px solid var(--border) !important;
+}
+
+caption {
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.6rem;
+}
+
+thead th {
+    background-color: var(--bg-muted);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid var(--border);
+    border-bottom: 2px solid var(--border-hover);
+    text-align: left;
+}
+
+tbody td {
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+tbody tr:hover {
+    background-color: var(--bg-muted);
+}
+
+tfoot td, tfoot th {
+    padding: 0.75rem 0.85rem;
+    border: 1px solid var(--border);
+    background-color: var(--bg-muted);
+    font-weight: 600;
+}
+
+/* Fila de Total destacado */
+tfoot tr:last-child td,
+tfoot tr:last-child th {
+    background-color: var(--success-light);
+    color: var(--success-hover);
+    font-size: 1.05rem;
+}
+
+/* Medidores de Stock */
+meter {
+    width: 70px;
+    height: 14px;
+    vertical-align: middle;
+    border-radius: 4px;
+}
+
+/* Barra de búsqueda y filtros del catálogo */
+#catalogo form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+#catalogo form label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Botón agregar producto en catálogo */
+#catalogo td button {
+    background: var(--primary-light);
+    color: var(--primary);
+    border: 1px solid #bfdbfe;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+#catalogo td button:hover:not(:disabled) {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+#catalogo td button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ---------- 7. CARRITO Y VISTA PREVIA DE TICKET ---------- */
+/* Botón eliminar producto en carrito */
+#carrito td button {
+    background: var(--danger-light);
+    color: var(--danger);
+    border: 1px solid #fecaca;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.85rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+#carrito td button:hover {
+    background: var(--danger);
+    color: #ffffff;
+}
+
+/* Estilo auténtico de ticket térmico */
+figure {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+figure pre {
+    display: inline-block;
+    text-align: left;
+    background: var(--bg-card);
+    border: 1px dashed var(--border-hover);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    color: var(--text-main);
+    box-shadow: var(--shadow-sm);
+    line-height: 1.4;
+}
+
+figcaption {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+/* Desplegables <details> (cupón de descuento y últimos tickets) */
+details {
+    background: var(--bg-muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+}
+
+details[open] {
+    background: var(--bg-card);
+}
+
+summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--primary);
+    user-select: none;
+    outline: none;
+}
+
+summary:hover {
+    color: var(--primary-hover);
+}
+
+details form,
+details table {
+    margin-top: 1rem;
+}
+
+/* ---------- 8. CLIENTE Y PAGO ---------- */
+/* Fieldsets elegantes */
+fieldset {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-card);
+    margin: 1rem 0;
+}
+
+legend {
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    padding: 0.2rem 0.6rem;
+    background: var(--bg-muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+/* Formularios e inputs */
+input[type="text"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="email"],
+select,
+textarea {
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-hover);
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    color: var(--text-main);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="search"] {
+    min-width: 240px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Radio buttons y checkboxes */
+input[type="radio"],
+input[type="checkbox"] {
+    accent-color: var(--primary);
+    cursor: pointer;
+    width: 1.05rem;
+    height: 1.05rem;
+    vertical-align: middle;
+    margin-right: 0.35rem;
+}
+
+fieldset label {
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-right: 1.25rem;
+    vertical-align: middle;
+}
+
+/* Tabla de cálculo de pago */
+#pago table {
+    max-width: 480px;
+    background: transparent;
+    border: none !important;
+    margin: 0.75rem 0;
+}
+
+#pago table td {
+    border: none;
+    padding: 0.4rem 0.5rem;
+}
+
+#pago table td:first-child {
+    font-weight: 500;
+    color: var(--text-muted);
+    width: 180px;
+}
+
+#pago table input[readonly] {
+    background: #f8fafc;
+    font-weight: 700;
+}
+
+#total {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+#cambio {
+    color: var(--success);
+    font-size: 1.1rem;
+}
+
+textarea {
+    width: 100%;
+    max-width: 600px;
+    resize: vertical;
+}
+
+/* ---------- 9. BOTONES DE ACCIÓN ---------- */
+button {
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-hover);
+    background: #ffffff;
+    color: var(--text-main);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+button:hover:not(:disabled) {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+button:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+/* Botón Cobrar principal */
+#pago button[type="submit"] {
+    background: var(--success);
+    color: #ffffff;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.75rem;
+    border: none;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+#pago button[type="submit"]:hover {
+    background: var(--success-hover);
+}
+
+/* Botón cancelar venta */
+#pago button[type="reset"] {
+    color: var(--danger);
+    border-color: #fecaca;
+}
+
+#pago button[type="reset"]:hover {
+    background: var(--danger-light);
+}
+
+/* Estado de tickets en reporte */
+#reporte del {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+/* ---------- 10. PIE DE PÁGINA (FOOTER) ---------- */
+footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 1.25rem 3rem 1.25rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+footer nav {
+    margin-bottom: 1rem;
+}
+
+footer nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+footer nav li {
+    margin: 0;
+    padding: 0;
+}
+
+footer nav a {
+    color: var(--text-muted);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+footer nav a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+footer address {
+    font-style: normal;
+    margin-bottom: 0.5rem;
+}
+
+/* ---------- 10. FORMULARIO DE CONTACTO Y ESTILOS DE VALIDACIÓN ---------- */
+#contacto {
+    max-width: 100%;
+}
+
+.form-contacto {
+    max-width: 650px;
+    margin-top: 1rem;
+}
+
+.form-contacto .form-grupo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
+    position: relative;
+}
+
+.form-contacto label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    margin-bottom: 0.4rem;
+}
+
+.obligatorio {
+    color: var(--danger);
+    font-weight: 700;
+    margin-left: 0.2rem;
+}
+
+.form-contacto input,
+.form-contacto textarea {
+    width: 100%;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.form-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.btn-contacto-enviar {
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    padding: 0.7rem 1.6rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.btn-contacto-enviar:hover {
+    background: var(--primary-hover);
+}
+
+.btn-contacto-limpiar {
+    background: var(--bg-card);
+    color: var(--text-muted);
+    border: 1px solid var(--border-hover);
+    padding: 0.7rem 1.3rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-contacto-limpiar:hover {
+    background: var(--bg-muted);
+    color: var(--text-main);
+}
+
+/* ==========================================================================
+   ESTILOS DE VALIDACIÓN (CSS)
+   ========================================================================== */
+
+/* 1. Estado del input cuando contiene error */
+.input-error {
+    border-color: var(--danger) !important;
+    background-color: var(--danger-light) !important;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15) !important;
+}
+
+/* 2. Estado del input cuando es válido */
+.input-valido {
+    border-color: var(--success) !important;
+    box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15) !important;
+}
+
+/* 3. Mensaje de error individual debajo de cada input */
+.campo-error {
+    display: none;
+    font-size: 0.85rem;
+    color: var(--danger);
+    font-weight: 500;
+    margin-top: 0.35rem;
+}
+
+.campo-error.visible {
+    display: block;
+    animation: fadeInError 0.2s ease-in-out;
+}
+
+/* 4. Caja de alerta / error en la parte inferior del formulario */
+.alerta-formulario {
+    display: none;
+    margin-top: 1.25rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    animation: slideDownAlert 0.25s ease-out;
+}
+
+/* Estilo para error global */
+.alerta-formulario.alerta-error {
+    display: block;
+    background-color: var(--danger-light);
+    border: 1px solid var(--danger);
+    color: #991b1b;
+}
+
+body.dark-mode .alerta-formulario.alerta-error {
+    background-color: rgba(239, 68, 68, 0.18);
+    border-color: var(--danger);
+    color: #fca5a5;
+}
+
+/* Estilo para éxito */
+.alerta-formulario.alerta-exito {
+    display: block;
+    background-color: var(--success-light);
+    border: 1px solid var(--success);
+    color: #065f46;
+}
+
+body.dark-mode .alerta-formulario.alerta-exito {
+    background-color: rgba(16, 185, 129, 0.18);
+    border-color: var(--success);
+    color: #a7f3d0;
+}
+
+.alerta-titulo {
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.alerta-lista {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.alerta-lista li {
+    margin-bottom: 0.25rem;
+}
+
+/* Animaciones sutiles */
+@keyframes fadeInError {
+    from {
+        opacity: 0;
+        transform: translateY(-3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDownAlert {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- 11. RESPONSIVE / ADAPTABILIDAD ---------- */
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+
+    section, aside#avisos {
+        padding: 1.25rem;
+    }
+
+    header#inicio {
+        padding-top: 1.25rem;
+        border-radius: 0;
+    }
+
+    .btn-menu {
+        display: inline-flex;
+    }
+
+    /* Ocultar el menú en móvil por defecto */
+    #nav-principal {
+        display: none;
+        width: 100%;
+        margin-top: 0.75rem;
+    }
+
+    /* Mostrar menú cuando JS añade la clase .activo */
+    #nav-principal.activo {
+        display: block;
+    }
+
+    #nav-principal ul {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.4rem;
+    }
+
+    #nav-principal a {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: left;
+        padding: 0.6rem 0.85rem;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    #sesion table {
+        display: table;
+        white-space: normal;
+    }
+
+    #sesion tr {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #sesion th, #sesion td {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    #catalogo form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #pago button {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-acciones {
+        flex-direction: column;
+    }
+
+    .form-acciones button {
+        width: 100%;
+    }
+}
+
+/* ==========================================================================
+   MEJORAS VISUALES: CATÁLOGO Y CRUD DE PRODUCTOS
+   ========================================================================== */
+
+.catalogo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.catalogo-botones-principales {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* Botones con estilo moderno */
+.btn-nuevo-producto {
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    color: #ffffff !important;
+    border: none;
+    padding: 0.65rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.btn-nuevo-producto:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    filter: brightness(1.05);
+}
+
+.btn-ir-carrito {
+    background: linear-gradient(135deg, var(--success), var(--success-hover));
+    color: #ffffff !important;
+    border: none;
+    padding: 0.65rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-ir-carrito:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);
+}
+
+.btn-secundario {
+    background: var(--bg-muted);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+    padding: 0.6rem 1.1rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-secundario:hover {
+    background: var(--border);
+}
+
+/* Formulario filtro en catálogo */
+.form-filtro-catalogo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1rem;
+    background: var(--bg-muted);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+}
+
+.filtro-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 220px;
+}
+
+.filtro-campo label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.btn-limpiar {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 0.55rem 0.9rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    align-self: flex-end;
+}
+
+.btn-limpiar:hover {
+    background: var(--border);
+    color: var(--text-main);
+}
+
+/* Badges de código, categoría y stock */
+.badge-codigo {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.2rem 0.5rem;
+    background: var(--bg-muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--primary);
+    display: inline-block;
+}
+
+.badge-categoria {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    background: rgba(99, 102, 241, 0.12);
+    color: #6366f1;
+    border: 1px solid rgba(99, 102, 241, 0.25);
+}
+
+body.dark-mode .badge-categoria {
+    background: rgba(99, 102, 241, 0.25);
+    color: #a5b4fc;
+}
+
+.badge-stock {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    min-width: 2rem;
+    text-align: center;
+}
+
+.badge-disponible {
+    background: rgba(5, 150, 105, 0.12);
+    color: var(--success);
+    border: 1px solid rgba(5, 150, 105, 0.25);
+}
+
+.badge-bajo {
+    background: rgba(217, 119, 6, 0.15);
+    color: var(--warning);
+    border: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+.badge-agotado {
+    background: rgba(220, 38, 38, 0.12);
+    color: var(--danger);
+    border: 1px solid rgba(220, 38, 38, 0.25);
+}
+
+.col-precio {
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 1rem;
+}
+
+/* Acciones en la tabla */
+.acciones-fila {
+    display: flex;
+    gap: 0.4rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-accion-editar {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary);
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    padding: 0.35rem 0.65rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.btn-accion-editar:hover {
+    background: rgba(37, 99, 235, 0.2);
+    transform: translateY(-1px);
+}
+
+.btn-accion-eliminar {
+    background: rgba(220, 38, 38, 0.1);
+    color: var(--danger);
+    border: 1px solid rgba(220, 38, 38, 0.25);
+    padding: 0.35rem 0.65rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.btn-accion-eliminar:hover {
+    background: rgba(220, 38, 38, 0.22);
+    transform: translateY(-1px);
+}
+
+.btn-agregar-catalogo {
+    background: var(--success);
+    color: #ffffff;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.btn-agregar-catalogo:hover:not(:disabled) {
+    background: var(--success-hover);
+}
+
+.btn-deshabilitado {
+    background: var(--border) !important;
+    color: var(--text-muted) !important;
+    cursor: not-allowed !important;
+    opacity: 0.7;
+}
+
+/* Formulario de Crear / Editar Producto */
+.tarjeta-formulario {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-producto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.grupo-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.grupo-campo label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.grupo-campo input,
+.grupo-campo select {
+    padding: 0.65rem 0.85rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.grupo-campo input:focus,
+.grupo-campo select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.campo-invalido {
+    border-color: var(--danger) !important;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15) !important;
+}
+
+.btn-guardar {
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.btn-guardar:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+.btn-cancelar-enlace {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-sm);
+    transition: background 0.15s, color 0.15s;
+}
+
+.btn-cancelar-enlace:hover {
+    color: var(--text-main);
+    background: var(--bg-muted);
+}
+
+/* Alertas */
+.alerta {
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.alerta-exito {
+    background: rgba(5, 150, 105, 0.12);
+    border: 1px solid rgba(5, 150, 105, 0.25);
+    color: var(--success);
+    font-weight: 600;
+}
+
+.alerta-error {
+    background: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.25);
+    color: var(--danger);
+}
+
+
+
+
+
+
